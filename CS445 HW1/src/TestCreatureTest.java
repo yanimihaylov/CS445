@@ -5,8 +5,7 @@ import org.junit.Test;
 public class TestCreatureTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void test_eat() {
 	}
 
 }

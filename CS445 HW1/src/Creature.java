@@ -1,5 +1,5 @@
 public abstract class Creature extends Thing{
-	Thing eaten=null;
+	Thing eaten;
 	public Creature(String n){
 		super(n);
 	}
