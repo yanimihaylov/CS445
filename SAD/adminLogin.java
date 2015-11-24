@@ -20,35 +20,35 @@ public class adminLogin extends Login{
 	
 	public void options(){
 		displayOptions();
-		int selection = scan.nextInt();
+		String selection = scan.next();
 
 		switch(selection){
 
-			case 1:
+			case "1":
 				createListing();
 				break;
 
-			case 2:
+			case "2":
 				readFile();
 				break;
 
-			case 3:
+			case "3":
 				modifyListing();
 				break;
 
-			case 4:
+			case "4":
 				removeListing();
 				break;
 
-			case 5:
+			case "5":
 				viewListings();
 				break;
 
-			case 6:
+			case "6":
 				search();
 				break;
 
-			case 7:
+			case "7":
 				System.out.println("You have been logged out");
 				System.exit(0);
 
