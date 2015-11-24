@@ -23,9 +23,15 @@ public class adminLogin extends Login{
 			case 1:
 				createListing();
 				break;
+
+			case 3:
+				removeListing();
+				break;
+
 			case 4:
 				viewListings();
 				break;
+
 			case 5:
 				System.out.println("You have been logged out");
 				System.exit(0);
@@ -42,10 +48,30 @@ public class adminLogin extends Login{
 		listingsArray.add(cr.createListing());
 		options();
 	}
+
+	public void removeListing(){
+
+		System.out.println("Enter company name");
+		String companyName = scan.next();
+		boolean flag = false;
+		int i=0;
+		int location;
+		while(flag == false || i<listingsArray.size()){
+			if(listingsArray.get(i).getName().equalsIgnoreCase(companyName)){
+				System.out.println("yay");
+				listingsArray.remove(i);
+				flag = true;
+			}
+			i++;
+		}
+		System.out.println("peace we out");
+		options();
+	}
 	
 	public void viewListings(){
+
 		for(int i = 0; i<listingsArray.size(); i++)
-		System.out.println(listingsArray.get(i).toString());
+			System.out.println(listingsArray.get(i).toString());
 
 		options();
 	}
