@@ -53,7 +53,7 @@ public class adminLogin extends Login{
 				System.exit(0);
 
 			default:
-				System.out.println("Unrecognized input");
+				System.out.println("\nUnrecognized input");
 				options();
 				break;
 		}
@@ -101,12 +101,11 @@ public class adminLogin extends Login{
 			if(listingsArray.get(i).getName().equalsIgnoreCase(companyName)){
 				location=i;
 				flag = true;
-				System.out.println("-----");
 			}
 			i++;
 		}
 		listingsArray = mod.modify(listingsArray, i-1);
-		System.out.println("Company info modified");
+		System.out.println("\nCompany info modified");
 		options();
 	}
 
@@ -131,7 +130,7 @@ public class adminLogin extends Login{
 		if(found == true)
 			System.out.println(listingsArray.get(location).toString());
 		else
-			System.out.println("Listing not found");
+			System.out.println("\nListing not found");
 
 			options();
 		
@@ -139,8 +138,9 @@ public class adminLogin extends Login{
 	
 	public void viewListings(){
 
+		System.out.println("\nCompanies:");
 		for(int i = 0; i<listingsArray.size(); i++)
-			System.out.println(listingsArray.get(i).toString());
+			System.out.println(listingsArray.get(i).getName());
 
 		options();
 	}

@@ -22,7 +22,7 @@ public class Login {
 			
 			if(usr.equals("admin") && psw.equals("pass"))
 			{
-					System.out.println("Welcome, admin.");
+					System.out.println("\nWelcome, admin.");
 					adlog.options();
 					b=true;
 			}
