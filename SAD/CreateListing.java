@@ -18,17 +18,18 @@ public class CreateListing{
 		System.out.println("Enter listing type");
 		String type = scan.nextLine();
 
-		if(type.equalsIgnoreCase("r")){
+
+		if(type.equalsIgnoreCase("Regular")){
 			Regular listing = new Regular(name,sd,ed,desc);
 			return listing;
 		}
 
-		if(type.equalsIgnoreCase("hpf")){
+		if(type.equalsIgnoreCase("HomePageFeatured")){
 			HomePageFeatured listing = new HomePageFeatured(name,sd,ed,desc);
 			return listing;
 		}
 
-		if(type.equalsIgnoreCase("cf")){
+		if(type.equalsIgnoreCase("CategoryFeatured")){
 			CategoryFeatured listing = new CategoryFeatured(name,sd,ed,desc);
 			return listing;
 		}

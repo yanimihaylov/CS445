@@ -5,17 +5,18 @@ public class adminLogin extends Login{
 	CreateListing cr = new CreateListing();
 	readFile r = new readFile();
 	modifyListing mod = new modifyListing();
+	viewListing v = new viewListing();
 	Scanner scan = new Scanner(System.in);
 	ArrayList<Listing> listingsArray = new ArrayList<Listing>();
 
 	public void displayOptions(){
+		listingsArray.addAll(r.read());
 		System.out.println("\n1. Create listing");
-		System.out.println("2. Read file");
-		System.out.println("3. Modify listing");
-		System.out.println("4. Remove listing");
-		System.out.println("5. View listings");
-		System.out.println("6. Search");
-		System.out.println("7. Logout");
+		System.out.println("2. Modify listing");
+		System.out.println("3. Remove listing");
+		System.out.println("4. View listings");
+		System.out.println("5. Search");
+		System.out.println("6. Logout");
 	}
 	
 	public void options(){
@@ -29,26 +30,22 @@ public class adminLogin extends Login{
 				break;
 
 			case "2":
-				readFile();
-				break;
-
-			case "3":
 				modifyListing();
 				break;
 
-			case "4":
+			case "3":
 				removeListing();
 				break;
 
-			case "5":
+			case "4":
 				viewListings();
 				break;
 
-			case "6":
+			case "5":
 				search();
 				break;
 
-			case "7":
+			case "6":
 				System.out.println("You have been logged out");
 				System.exit(0);
 
@@ -111,7 +108,7 @@ public class adminLogin extends Login{
 
 	public void search(){
 
-		System.out.println("Enter company name");
+		System.out.println("\nEnter company name");
 		String companyName = scan.next();
 		boolean flag = false;
 		boolean found = false;
@@ -137,11 +134,7 @@ public class adminLogin extends Login{
 	}
 	
 	public void viewListings(){
-
-		System.out.println("\nCompanies:");
-		for(int i = 0; i<listingsArray.size(); i++)
-			System.out.println(listingsArray.get(i).getName());
-
+		v.view(listingsArray);
 		options();
 	}
 }
