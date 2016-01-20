@@ -9,8 +9,12 @@ public class adminLogin extends Login{
 	Scanner scan = new Scanner(System.in);
 	ArrayList<Listing> listingsArray = new ArrayList<Listing>();
 
-	public void displayOptions(){
+	public void start(){
 		listingsArray.addAll(r.read());
+		options();
+	}
+
+	public void displayOptions(){
 		System.out.println("\n1. Create listing");
 		System.out.println("2. Modify listing");
 		System.out.println("3. Remove listing");
@@ -46,8 +50,11 @@ public class adminLogin extends Login{
 				break;
 
 			case "6":
-				System.out.println("You have been logged out");
+				r.write(listingsArray);
+				System.out.println("Data has been saved.");
+				System.out.println("You have been logged out.");
 				System.exit(0);
+				break;
 
 			default:
 				System.out.println("\nUnrecognized input");

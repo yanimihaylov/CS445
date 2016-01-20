@@ -1,0 +1,5 @@
+HomePageFeatured|Services|Emergency|12/12/19|12/12/21|For emergency dial 911
+Regular|Services|Dial-a-Maid|12/12/13|12/12/16|Home cleaning services. Phone: 31-555-1212
+CategoryFeatured|Selling|MacBook Pro 13-inch $700|03/11/15|03/11/16|Selling my old MacBook. Price: $700 obo. Phone: 123-456-7890
+Regular|Buying|4K UHD TV|12/12/15|12/12/16|Looking to buy a 4K TV up to $1000. Phone: 098-765-4321
+Regular|Selling|iPhone 6 64gb|03/12/12|12/23/13|Selling iPhone 6gb Price: $450

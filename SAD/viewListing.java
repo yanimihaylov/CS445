@@ -4,12 +4,16 @@ public class viewListing{
 	Scanner scan = new Scanner(System.in);
 
 	public void view(ArrayList<Listing> list){
-		System.out.println("\n1. View Listing by type\n2. Order alphabetically");
+		System.out.println("\n1. View Listing by type\n2. View by Category");
 		String selection = scan.nextLine();
 
 		switch (selection){
 			case "1":
 				viewByType(list);
+				break;
+
+			case "2":
+				viewByCategory(list);
 				break;
 
 			default:
@@ -20,7 +24,7 @@ public class viewListing{
 	}
 
 	public void viewByType(ArrayList<Listing> l){
-		System.out.println("\n1. Regular\n2. Category Featured\n3. Home Page Featured");
+		System.out.println("\n1. Regular\n2. Category Featured\n3. Home Page Featured\n-1 to return");
 		String type = scan.nextLine();
 		for(int i = 0; i<l.size(); i++){
 
@@ -51,6 +55,41 @@ public class viewListing{
 					viewByType(l);
 					break;
 
+			}
+		}
+	}
+
+	public void viewByCategory(ArrayList<Listing> l){
+		System.out.println("\n1. Services\n2. Selling\n3. Buying\n-1 to return");
+		String cat = scan.nextLine();
+		for(int i=0; i<l.size(); i++){
+
+			switch(cat){
+				case "1":
+					if(l.get(i).getCategory().equals("Services")){
+						System.out.println(l.get(i).getName()+"\n "+l.get(i).getDescription()+"\n");
+					}
+					break;
+
+				case "2":
+					if(l.get(i).getCategory().equals("Selling")){
+						System.out.println(l.get(i).getName()+"\n "+l.get(i).getDescription()+"\n");
+					}
+					break;
+
+				case "3":
+					if(l.get(i).getCategory().equals("Buying")){
+						System.out.println(l.get(i).getName()+"\n "+l.get(i).getDescription()+"\n");
+					}
+					break;
+
+				case "-1":
+					break;
+
+				default:
+					System.out.println("Unrecognized input");
+					viewByType(l);
+					break;
 			}
 		}
 	}
