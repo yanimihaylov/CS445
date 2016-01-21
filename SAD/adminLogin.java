@@ -1,9 +1,9 @@
 import java.util.*;
-public class adminLogin extends Login{
+public class adminLogin{
 	
 	Login l = new Login();
 	CreateListing cr = new CreateListing();
-	readFile r = new readFile();
+	dataIO r = new dataIO();
 	modifyListing mod = new modifyListing();
 	viewListing v = new viewListing();
 	Scanner scan = new Scanner(System.in);
@@ -50,10 +50,7 @@ public class adminLogin extends Login{
 				break;
 
 			case "6":
-				r.write(listingsArray);
-				System.out.println("Data has been saved.");
-				System.out.println("You have been logged out.");
-				System.exit(0);
+				exit();
 				break;
 
 			default:
@@ -63,7 +60,33 @@ public class adminLogin extends Login{
 		}
 	}
 
-	public void readFile(){
+	public void exit(){
+		System.out.println("1. Save and Exit\n2. Exit without saving changes\n3. Cancel");
+		String selection = scan.next();
+
+		switch(selection){
+
+			case "1":
+				r.write(listingsArray);
+				System.out.println("Data has been saved.\nYou have been logged out.");
+				return;
+
+			case "2":
+				System.out.println("Data has not been saved.\nYou have been logged out.");
+				return;
+
+			case "3":
+				options();
+				return;
+
+			default:
+				System.out.println("\nUnrecognized input");
+				exit();
+				break;
+		}
+	}
+
+	public void data(){
 		listingsArray.addAll(r.read());
 		for(int i = 0; i<listingsArray.size(); i++)
 			System.out.println(listingsArray.get(i).toString());
@@ -90,7 +113,7 @@ public class adminLogin extends Login{
 			}
 			i++;
 		}
-		System.out.println("Company deleted from database");
+		System.out.println("Company deleted from Database");
 		options();
 	}
 

@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class readFile{
+public class dataIO{
 	public ArrayList<Listing> read(){
 
 		ArrayList<Listing> list = new ArrayList<Listing>();

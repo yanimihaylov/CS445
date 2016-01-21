@@ -4,16 +4,17 @@ public class viewListing{
 	Scanner scan = new Scanner(System.in);
 
 	public void view(ArrayList<Listing> list){
-		System.out.println("\n1. View Listing by type\n2. View by Category");
+		System.out.println("\n1. View by Category\n2. View Listing by type");
 		String selection = scan.nextLine();
 
 		switch (selection){
+
 			case "1":
-				viewByType(list);
+				viewByCategory(list);
 				break;
 
 			case "2":
-				viewByCategory(list);
+				viewByType(list);
 				break;
 
 			default:
