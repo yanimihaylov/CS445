@@ -1,7 +1,7 @@
 public class Regular extends Listing{
 	
-	public Regular(String n, String sd, String ed, String d){
-		super(n, sd, ed, d);
+	public Regular(String c, String n, String sd, String ed, String d){
+		super(c, n, sd, ed, d);
 	}
 	
 	public String toString(){

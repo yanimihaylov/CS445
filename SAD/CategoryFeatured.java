@@ -1,7 +1,7 @@
 public class CategoryFeatured extends Listing{
 	
-	public CategoryFeatured(String n, String sd, String ed, String d){
-		super(n, sd, ed, d);
+	public CategoryFeatured(String c, String n, String sd, String ed, String d){
+		super(c, n, sd, ed, d);
 	}
 	
 	public String toString(){

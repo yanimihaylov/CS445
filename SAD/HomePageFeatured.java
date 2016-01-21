@@ -1,7 +1,7 @@
 public class HomePageFeatured extends Listing{
 	
-	public HomePageFeatured(String n, String sd, String ed, String d){
-		super(n, sd, ed, d);
+	public HomePageFeatured(String c, String n, String sd, String ed, String d){
+		super(c, n, sd, ed, d);
 	}
 	
 	public String toString(){
