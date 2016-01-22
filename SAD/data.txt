@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 HomePageFeatured|Services|Emergency|01/22/2016|01/22/2020|Call 9-1-1|0|
 Regular|Selling|MacBook|03/03/2014|03/03/2015|$700 obo|1|
 Regular|Services|Dial-a-Maid|12/12/2012|12/12/2014|Home Cleaning Services|1|
 Regular|Selling|iPhone 6 64GB|03/21/2015|03/21/2016|Selling phone|1|
 Regular|Services|Uber U.S.|02/10/2016|02/10/2017|Download Uber app|3|
-=======
-HomePageFeatured|Services|Emergency|12/12/12|12/12/21|call 911
-Regular|Selling|MacBook|03/03/14|03/03/15|$700
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5

@@ -14,9 +14,6 @@ public class CreateListing{
 		System.out.println("Enter listing category (Services, Buying, Selling)");
 		String cat = scan.nextLine();
 
-		System.out.println("Enter listing category (Services, Buying, Selling)");
-		String cat = scan.nextLine();
-
 		System.out.println("Enter listing name");
 		String name = scan.nextLine();
 
@@ -70,29 +67,17 @@ public class CreateListing{
 		}
 
 		if(type.equalsIgnoreCase("Regular")){
-<<<<<<< HEAD
 			Regular listing = new Regular(cat,name,startDate,endDate,desc);
-=======
-			Regular listing = new Regular(cat,name,sd,ed,desc);
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 			return listing;
 		}
 
 		if(type.equalsIgnoreCase("HomePageFeatured")){
-<<<<<<< HEAD
 			HomePageFeatured listing = new HomePageFeatured(cat,name,startDate,endDate,desc);
-=======
-			HomePageFeatured listing = new HomePageFeatured(cat,name,sd,ed,desc);
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 			return listing;
 		}
 
 		if(type.equalsIgnoreCase("CategoryFeatured")){
-<<<<<<< HEAD
 			CategoryFeatured listing = new CategoryFeatured(cat,name,startDate,endDate,desc);
-=======
-			CategoryFeatured listing = new CategoryFeatured(cat,name,sd,ed,desc);
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 			return listing;
 		}
 

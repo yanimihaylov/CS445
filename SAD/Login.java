@@ -5,11 +5,8 @@ public class Login {
 	ArrayList<Account> accountData = new ArrayList<Account>();
 	Scanner scan = new Scanner(System.in);
 	AccountDataIO adIO = new AccountDataIO();
-<<<<<<< HEAD
 	
 	
-=======
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 	checkAccount ca = new checkAccount();
 	createAccount cra = new createAccount();
 
@@ -48,11 +45,8 @@ public class Login {
 					else if(out!=0 && out!=-1){
 						String name = accountData.get(out).getUsername();
 						System.out.println("Welcome, "+name);
-<<<<<<< HEAD
 						clog.start(out);
 
-=======
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 					}
 					break;
 
@@ -74,20 +68,12 @@ public class Login {
 	}
 
 	public int signIN(){
-<<<<<<< HEAD
 		Console console = System.console();
-=======
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 
 		System.out.println("Enter username:");
 		String usr = scan.next();
 			
-<<<<<<< HEAD
 		String psw = new String(console.readPassword("Please enter your password: "));
-=======
-		System.out.println("Enter password:");
-		String psw = scan.next();
->>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 
 		int res = ca.check(usr, psw, accountData);
 			
