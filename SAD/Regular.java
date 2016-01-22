@@ -1,6 +1,7 @@
+import java.util.*;
 public class Regular extends Listing{
 	
-	public Regular(String c, String n, String sd, String ed, String d){
+	public Regular(String c, String n, Date sd, Date ed, String d){
 		super(c, n, sd, ed, d);
 	}
 	

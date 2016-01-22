@@ -1,9 +1,12 @@
 import java.util.*;
+import java.io.*;
 public class Login {
 
 	ArrayList<Account> accountData = new ArrayList<Account>();
 	Scanner scan = new Scanner(System.in);
 	AccountDataIO adIO = new AccountDataIO();
+	
+	
 	checkAccount ca = new checkAccount();
 	createAccount cra = new createAccount();
 
@@ -16,6 +19,7 @@ public class Login {
 	public void login(){
 			boolean a = true;
 			adminLogin adlog = new adminLogin();
+			customerLogin clog = new customerLogin();
 
 		while(a==true){
 			Scanner scan = new Scanner(System.in);
@@ -41,6 +45,8 @@ public class Login {
 					else if(out!=0 && out!=-1){
 						String name = accountData.get(out).getUsername();
 						System.out.println("Welcome, "+name);
+						clog.start(out);
+
 					}
 					break;
 
@@ -62,12 +68,12 @@ public class Login {
 	}
 
 	public int signIN(){
+		Console console = System.console();
 
 		System.out.println("Enter username:");
 		String usr = scan.next();
 			
-		System.out.println("Enter password:");
-		String psw = scan.next();
+		String psw = new String(console.readPassword("Please enter your password: "));
 
 		int res = ca.check(usr, psw, accountData);
 			

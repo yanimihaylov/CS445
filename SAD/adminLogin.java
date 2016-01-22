@@ -10,6 +10,7 @@ public class adminLogin{
 	ArrayList<Listing> listingsArray = new ArrayList<Listing>();
 
 	public void start(){
+		listingsArray.clear();
 		listingsArray.addAll(r.read());
 		options();
 	}
@@ -94,13 +95,14 @@ public class adminLogin{
 	}
 	
 	public void createListing(){
-
-		listingsArray.add(cr.createListing());
+		Listing list = cr.createListing();
+		list.setOwner(0);
+		listingsArray.add(list);
 		options();
 	}
 
 	public void removeListing(){
-
+		v.viewHomePage(listingsArray);
 		System.out.println("Enter company name");
 		String companyName = scan.next();
 		boolean flag = false;
@@ -118,7 +120,7 @@ public class adminLogin{
 	}
 
 	public void modifyListing(){
-
+		v.viewHomePage(listingsArray);
 		System.out.println("Enter company name");
 		String companyName = scan.next();
 		boolean flag = false;
@@ -131,7 +133,7 @@ public class adminLogin{
 			}
 			i++;
 		}
-		listingsArray = mod.modify(listingsArray, i-1);
+		listingsArray = mod.modify(listingsArray, location);
 		System.out.println("\nCompany info modified");
 		options();
 	}
@@ -164,7 +166,7 @@ public class adminLogin{
 	}
 	
 	public void viewListings(){
-		v.view(listingsArray);
+		v.view(listingsArray, 0);
 		options();
 	}
 }

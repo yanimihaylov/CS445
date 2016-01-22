@@ -1,11 +1,12 @@
-
+import java.util.*;
 public class Listing {
 	
 	String category;
 	String name;
-	String startDate;
-	String endDate;
+	Date startDate;
+	Date endDate;
 	String description;
+	int owner;
 	
 	public Listing(){
 		String name="";
@@ -14,7 +15,7 @@ public class Listing {
 		String description="";
 	}
 	
-	public Listing(String c, String n, String sd, String ed, String desc){
+	public Listing(String c, String n, Date sd, Date ed, String desc){
 		category=c;
 		name=n;
 		startDate=sd;
@@ -30,16 +31,24 @@ public class Listing {
 			return name;
 	}
 	
-	public String getStartDate(){
+	public Date getStartDate(){
 		return startDate;
 	}
 	
-	public String getEndDate(){
+	public Date getEndDate(){
 		return endDate;
 	}
 	
 	public String getDescription(){
 		return description;
+	}
+
+	public int getOwner(){
+		return owner;
+	}
+
+	public void setOwner(int ow){
+		owner=ow;
 	}
 	
 	public void setCategory(String ca){
@@ -50,11 +59,11 @@ public class Listing {
 		name=na;
 	}
 	
-	public void setStartDate(String sDate){
+	public void setStartDate(Date sDate){
 		startDate=sDate;
 	}
 	
-	public void setEndDate(String eDate){
+	public void setEndDate(Date eDate){
 		endDate=eDate;
 	}
 

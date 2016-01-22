@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.text.*;
 public class dataIO{
 	public ArrayList<Listing> read(){
 
@@ -8,6 +9,9 @@ public class dataIO{
 		try{
 			File file = new File("data.txt");
 			Scanner scan = new Scanner(file);
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			Date startDate = new Date(); 
+			Date endDate = new Date();
 			
 
 			while(scan.hasNextLine()){
@@ -22,19 +26,33 @@ public class dataIO{
 					String sd=strtok.nextToken();
 					String ed=strtok.nextToken();
 					String desc=strtok.nextToken();
+					int owner = Integer.parseInt(strtok.nextToken());
+
+					try
+					{
+						endDate = df.parse(ed);
+						startDate = df.parse(sd);
+					}
+
+					catch (Exception ex ){
+						System.out.println(ex);
+					}
 
 					if(type.equalsIgnoreCase("regular")){
-						Regular listing = new Regular(category, name,sd,ed,desc);
+						Regular listing = new Regular(category, name,startDate,endDate,desc);
+						listing.setOwner(owner);
 						list.add(listing);
 					}
 
 					if(type.equalsIgnoreCase("HomePageFeatured")){
-						HomePageFeatured listing = new HomePageFeatured(category, name,sd,ed,desc);
+						HomePageFeatured listing = new HomePageFeatured(category, name,startDate,endDate,desc);
+						listing.setOwner(owner);
 						list.add(listing);
 					}
 
 					if(type.equalsIgnoreCase("CategoryFeatured")){
-						CategoryFeatured listing = new CategoryFeatured(category, name,sd,ed,desc);
+						CategoryFeatured listing = new CategoryFeatured(category, name,startDate,endDate,desc);
+						listing.setOwner(owner);
 						list.add(listing);
 					}
 				}
@@ -52,6 +70,9 @@ public class dataIO{
 	{
 		OutputStreamWriter filestream;
 		FileOutputStream file;
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		Date startDate = new Date(); 
+		Date endDate = new Date();
 
 		try{
 				file = new FileOutputStream("data.txt", false);
@@ -61,9 +82,10 @@ public class dataIO{
 					filestream.write(l.get(i).getClass().getSimpleName()+"|");
 					filestream.write(l.get(i).getCategory()+"|");
 					filestream.write(l.get(i).getName()+"|");
-					filestream.write(l.get(i).getStartDate()+"|");
-					filestream.write(l.get(i).getEndDate()+"|");
-					filestream.write(l.get(i).getDescription());
+					filestream.write(df.format(l.get(i).getStartDate())+"|");
+					filestream.write(df.format(l.get(i).getEndDate())+"|");
+					filestream.write(l.get(i).getDescription()+"|");
+					filestream.write(l.get(i).getOwner()+"|");
 					filestream.write("\n");
 				}
 			filestream.flush();

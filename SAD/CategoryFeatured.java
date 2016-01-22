@@ -1,6 +1,7 @@
+import java.util.*;
 public class CategoryFeatured extends Listing{
 	
-	public CategoryFeatured(String c, String n, String sd, String ed, String d){
+	public CategoryFeatured(String c, String n, Date sd, Date ed, String d){
 		super(c, n, sd, ed, d);
 	}
 	
