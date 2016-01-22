@@ -15,7 +15,11 @@ public class Listing {
 		String description="";
 	}
 	
+<<<<<<< HEAD
 	public Listing(String c, String n, Date sd, Date ed, String desc){
+=======
+	public Listing(String c, String n, String sd, String ed, String desc){
+>>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 		category=c;
 		name=n;
 		startDate=sd;

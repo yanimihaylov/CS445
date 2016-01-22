@@ -2,5 +2,8 @@ admin|pass
 ymihaylo|1234
 ewsl|3331
 yani.miha|9403
+<<<<<<< HEAD
 mert|1234
 pratik|0000
+=======
+>>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5

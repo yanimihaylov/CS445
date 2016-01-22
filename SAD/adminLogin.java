@@ -10,7 +10,10 @@ public class adminLogin{
 	ArrayList<Listing> listingsArray = new ArrayList<Listing>();
 
 	public void start(){
+<<<<<<< HEAD
 		listingsArray.clear();
+=======
+>>>>>>> 16ba5ff8ee3977cfbcd3ae4dd638813c3de44bd5
 		listingsArray.addAll(r.read());
 		options();
 	}
