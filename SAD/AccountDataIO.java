@@ -27,7 +27,6 @@ public class AccountDataIO{
 		catch(IOException e){
 			System.out.println("Something is wrong reading the file with accounts.");
 		}
-		
 		return list;
 	}
 
@@ -43,7 +42,6 @@ public class AccountDataIO{
 				for(int i=0; i<l.size(); i++){
 					filestream.write(l.get(i).getUsername()+"|");
 					filestream.write(l.get(i).getPassword()+"\n");
-
 				}
 			filestream.flush();
 			file.close();

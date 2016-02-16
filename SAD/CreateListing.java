@@ -17,10 +17,8 @@ public class CreateListing{
 		System.out.println("Enter listing name");
 		String name = scan.nextLine();
 
-
 		System.out.println("Enter start date (mm/dd/yy)");
 		String sd = scan.nextLine();
-
 
 		try
 		{
@@ -50,8 +48,6 @@ public class CreateListing{
 		catch (Exception ex ){
 			System.out.println(ex);
 		}
-
-
 
 		System.out.println("Enter a short description");
 		String desc = scan.nextLine();
