@@ -10,10 +10,10 @@ public class Listing {
     int owner;
 
     public Listing() {
-        String name = "";
-        String startDate = "";
-        String endDate = "";
-        String description = "";
+        String name = " ";
+        String startDate = " ";
+        String endDate = " ";
+        String description = " ";
     }
 
     public Listing(String c, String n, Date sd, Date ed, String desc) {
