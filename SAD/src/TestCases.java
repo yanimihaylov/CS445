@@ -1,6 +1,4 @@
-import org.junit.Assert;
 import org.junit.Test;
-import org.testng.AssertJUnit;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -9,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by ymihaylo on 2/29/16.
@@ -30,58 +28,58 @@ public class TestCases {
         l1.add(a2);
 
 
-        Assert.assertEquals(l.get(1).getUsername(), l1.get(1).getUsername());
-        Assert.assertEquals(l.get(1).getPassword(), l1.get(1).getPassword());
+        assertEquals(l.get(1).getUsername(), l1.get(1).getUsername());
+        assertEquals(l.get(1).getPassword(), l1.get(1).getPassword());
 
-        Assert.assertEquals(l.get(0).getUsername(), l1.get(0).getUsername());
-        Assert.assertEquals(l.get(0).getPassword(), l1.get(0).getPassword());
+        assertEquals(l.get(0).getUsername(), l1.get(0).getUsername());
+        assertEquals(l.get(0).getPassword(), l1.get(0).getPassword());
 
     }
 
     @Test
     public void Account() throws Exception{
         Account a1 = new Account();
-        Assert.assertEquals(a1.getUsername(), "noNAME");
-        Assert.assertEquals(a1.getPassword(), "noPASS");
+        assertEquals(a1.getUsername(), "noNAME");
+        assertEquals(a1.getPassword(), "noPASS");
     }
 
     @Test
     public void testGetUsername() throws Exception {
         Account a1 = new Account("usr", "pass");
-        Assert.assertEquals(a1.getUsername(), "usr");
+        assertEquals(a1.getUsername(), "usr");
     }
 
     @Test
     public void testSetUsername() throws Exception {
         Account a1 = new Account("usr", "pass");
         a1.setUsername("newUSR");
-        Assert.assertEquals(a1.getUsername(), "newUSR");
+        assertEquals(a1.getUsername(), "newUSR");
     }
 
     @Test
     public void testGetPassword() throws Exception {
         Account a1 = new Account("usr", "pass");
-        Assert.assertEquals(a1.getPassword(), "pass");
+        assertEquals(a1.getPassword(), "pass");
     }
 
     @Test
     public void testSetPassword() throws Exception {
         Account a1 = new Account("usr", "pass");
         a1.setPassword("newPASS");
-        Assert.assertEquals(a1.getPassword(), "newPASS");
+        assertEquals(a1.getPassword(), "newPASS");
     }
 
     @Test
     public void testGetAccountID() throws Exception {
         Account a4 = new Account("usr", "pass");
-        Assert.assertEquals(a4.getAccountID(), 10);
+        assertEquals(a4.getAccountID(), 10);
     }
 
     @Test
     public void testSetAccountID() throws Exception {
         Account a1 = new Account();
         a1.setAccountID(4);
-        Assert.assertEquals(a1.getAccountID(), 4);
+        assertEquals(a1.getAccountID(), 4);
     }
 
     @Test
@@ -104,11 +102,11 @@ public class TestCases {
         HomePageFeatured l1 = new HomePageFeatured("Services", "Emergency", start, end, "Call 9-1-1");
         Regular l2 = new Regular("Selling", "MacBook", tstart, tend, "$700 obo");
 
-        Assert.assertEquals(l.get(0).getDescription(), l1.getDescription());
-        Assert.assertEquals(l.get(0).getName(), l1.getName());
+        assertEquals(l.get(0).getDescription(), l1.getDescription());
+        assertEquals(l.get(0).getName(), l1.getName());
 
-        Assert.assertEquals(l.get(1).getDescription(), l2.getDescription());
-        Assert.assertEquals(l.get(1).getName(), l2.getName());
+        assertEquals(l.get(1).getDescription(), l2.getDescription());
+        assertEquals(l.get(1).getName(), l2.getName());
     }
 
     @Test
@@ -124,7 +122,7 @@ public class TestCases {
         Date start = df.parse(sd);
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
-        AssertJUnit.assertEquals(li.getCategory(), "cat");
+        assertEquals(li.getCategory(), "cat");
     }
 
     @Test
@@ -135,7 +133,7 @@ public class TestCases {
         Date start = df.parse(sd);
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
-        AssertJUnit.assertEquals(li.getName(), "name");
+        assertEquals(li.getName(), "name");
     }
 
     @Test
@@ -146,7 +144,7 @@ public class TestCases {
         Date start = df.parse(sd);
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
-        AssertJUnit.assertEquals(li.getStartDate(), start);
+        assertEquals(li.getStartDate(), start);
     }
 
     @Test
@@ -157,7 +155,7 @@ public class TestCases {
         Date start = df.parse(sd);
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
-        AssertJUnit.assertEquals(li.getEndDate(), end);
+        assertEquals(li.getEndDate(), end);
     }
 
     @Test
@@ -168,7 +166,7 @@ public class TestCases {
         Date start = df.parse(sd);
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
-        AssertJUnit.assertEquals(li.getDescription(), "desc");
+        assertEquals(li.getDescription(), "desc");
     }
 
     @Test
@@ -180,7 +178,7 @@ public class TestCases {
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
         li.setOwner(1);
-        AssertJUnit.assertEquals(li.getOwner(), 1);
+        assertEquals(li.getOwner(), 1);
     }
 
     @Test
@@ -192,7 +190,7 @@ public class TestCases {
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
         li.setName("NA");
-        AssertJUnit.assertEquals(li.getName(), "NA");
+        assertEquals(li.getName(), "NA");
     }
 
     @Test
@@ -204,7 +202,7 @@ public class TestCases {
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
         li.setCategory("CA");
-        AssertJUnit.assertEquals(li.getCategory(), "CA");
+        assertEquals(li.getCategory(), "CA");
     }
 
     @Test
@@ -218,7 +216,7 @@ public class TestCases {
         String newSD = "04/21/2016";
         Date newSDD = df.parse(newSD);
         li.setStartDate(newSDD);
-        AssertJUnit.assertEquals(li.getStartDate(), newSDD);
+        assertEquals(li.getStartDate(), newSDD);
     }
 
     @Test
@@ -232,7 +230,7 @@ public class TestCases {
         String newED = "04/21/2016";
         Date newEDD = df.parse(newED);
         li.setEndDate(newEDD);
-        AssertJUnit.assertEquals(li.getEndDate(), newEDD);
+        assertEquals(li.getEndDate(), newEDD);
     }
 
     @Test
@@ -244,7 +242,7 @@ public class TestCases {
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
         li.setDescription("DE");
-        AssertJUnit.assertEquals(li.getDescription(), "DE");
+        assertEquals(li.getDescription(), "DE");
     }
 
     @Test
@@ -256,7 +254,7 @@ public class TestCases {
         Date end = df.parse(ed);
         Listing li = new Listing("cat", "name", start, end, "desc");
         li.setOwner(2);
-        AssertJUnit.assertEquals(li.getOwner(), 2);
+        assertEquals(li.getOwner(), 2);
     }
 
     @Test
@@ -265,11 +263,11 @@ public class TestCases {
         ArrayList<Account> accountData = new ArrayList<Account>();
         accountData.addAll(adIO.read());
 
-        AssertJUnit.assertEquals(accountData.get(0).getUsername(), "admin");
-        AssertJUnit.assertEquals(accountData.get(0).getPassword(), "pass");
+        assertEquals(accountData.get(0).getUsername(), "admin");
+        assertEquals(accountData.get(0).getPassword(), "pass");
 
-        AssertJUnit.assertEquals(accountData.get(1).getUsername(), "ymihaylo");
-        AssertJUnit.assertEquals(accountData.get(1).getPassword(), "1234");
+        assertEquals(accountData.get(1).getUsername(), "ymihaylo");
+        assertEquals(accountData.get(1).getPassword(), "1234");
     }
 
     @Test
@@ -285,12 +283,12 @@ public class TestCases {
         checkAccount ca = new checkAccount();
         Account a1 = new Account("test", "pass");
 
-        AssertJUnit.assertEquals(ca.check("admin", "pass", accountData), 0);
-        AssertJUnit.assertEquals(ca.check("ymihaylo", "1234", accountData), 1);
-        AssertJUnit.assertEquals(ca.check("noname", "nopass", accountData), -1);
-        AssertJUnit.assertEquals(ca.checkExisting(accountData.get(0), accountData), 1);
-        AssertJUnit.assertEquals(ca.checkExisting(accountData.get(1), accountData), 1);
-        AssertJUnit.assertEquals(ca.checkExisting(a1, accountData), 0);
+        assertEquals(ca.check("admin", "pass", accountData), 0);
+        assertEquals(ca.check("ymihaylo", "1234", accountData), 1);
+        assertEquals(ca.check("noname", "nopass", accountData), -1);
+        assertEquals(ca.checkExisting(accountData.get(0), accountData), 1);
+        assertEquals(ca.checkExisting(accountData.get(1), accountData), 1);
+        assertEquals(ca.checkExisting(a1, accountData), 0);
     }
 
     @Test
@@ -385,6 +383,17 @@ public class TestCases {
             System.out.print("The start date cannot be after the end date.\nStarting over.");
             assertEquals("The start date cannot be after the end date.\nStarting over.", outContent.toString());
         }
+    }
+
+    @Test
+    public void testListing() throws Exception{
+        Listing l = new Listing();
+
+        assertEquals(l.getName(), null);
+        assertEquals(l.getDescription(), null);
+        assertEquals(l.getCategory(), null);
+
+
     }
     
 }
