@@ -19,10 +19,6 @@ public class ShowManager implements InterfaceShows {
         return(s);
     }
 
-    public shows getLampDetail(int lid) {
-        return(findById(lid));
-    }
-
     private shows findById(int lid) {
     	location = 0;
         Iterator<shows> li = Shows.listIterator();
