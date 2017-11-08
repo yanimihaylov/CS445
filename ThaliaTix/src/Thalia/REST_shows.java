@@ -2,6 +2,11 @@ package Thalia;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import java.util.Iterator;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
@@ -12,8 +17,10 @@ public class REST_shows {
 	
 	private InterfaceShows is = new ShowManager();
 	private InterfaceSeating iseat = new SeatingManager();
+	Section initSection;
+	Seating initSeating;
+	Seat initSeat;
 
-	
 	
 	@PostConstruct
     public void postConstruct() {
@@ -24,7 +31,7 @@ public class REST_shows {
 		Seat initSeat;
 		
 		//Front Right
-		initSection = iseat.createSections("Front Right", 123);
+		initSection = iseat.createSections("Front Right", 123, 0);
 		for(int row = 1; row<=4; row++) {
 			initSeating = iseat.createSeating(row);
 			
@@ -37,7 +44,7 @@ public class REST_shows {
 		
 		
 		//Front Center
-		initSection = iseat.createSections("Front Center", 124);
+		initSection = iseat.createSections("Front Center", 124, 0);
 		for(int row = 1; row<=2; row++) {
 			initSeating = iseat.createSeating(row);
 			
@@ -64,7 +71,7 @@ public class REST_shows {
 		
 		
 		//Front Left
-		initSection = iseat.createSections("Front Left", 125);
+		initSection = iseat.createSections("Front Left", 125, 0);
 		for(int row = 1; row<=4; row++) {
 			initSeating = iseat.createSeating(row);
 			
@@ -78,7 +85,7 @@ public class REST_shows {
 		
 		
 		//Main Right
-		initSection = iseat.createSections("Main Right", 126);
+		initSection = iseat.createSections("Main Right", 126, 0);
 		for(int row = 5; row<=7; row++) {
 			initSeating = iseat.createSeating(row);
 					
@@ -90,7 +97,7 @@ public class REST_shows {
 		}
 		
 		//Main Center
-		initSection = iseat.createSections("Main Center", 127);
+		initSection = iseat.createSections("Main Center", 127, 0);
 		
 		initSeating = iseat.createSeating(5);
 		for(int seat = 6; seat<=11; seat++) {
@@ -116,7 +123,7 @@ public class REST_shows {
 		
 		
 		//Main Left
-		initSection = iseat.createSections("Main Center", 128);
+		initSection = iseat.createSections("Main Center", 128, 0);
 		
 		initSeating = iseat.createSeating(5);
 		for(int seat = 12; seat<=16; seat++) {
@@ -147,15 +154,81 @@ public class REST_shows {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response controlLamp(String json) {
+		
         Gson gson = new Gson();
-        shows s = gson.fromJson(json, shows.class);
         
-        shows ns = is.createShow(s.getName(), s.getWeb(), s.getDate(), s.getTime(), s.getSid(), s.getPrice());
+        JsonObject obj = gson.fromJson(json, JsonObject.class);
+		JsonElement showJSON = obj.get("show_info");
+		
+		JsonArray seatJSON = obj.getAsJsonArray("seating_info");
+		
+		//JsonObject seatObj = seatJSON.getAsJsonObject();
+		
+		String showString = showJSON.toString();
+		String seatString = seatJSON.get(0).toString();
+		
+		
+		
+		System.out.println(showString);
+		System.out.println(seatString);
+		
+        shows s = gson.fromJson(showString, shows.class); 
+        shows ns = is.createShow(s.getName(), s.getWeb(), s.getDate(), s.getTime());
         
-     Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
-     String st = gsonb.toJson(ns.getID());
+       // String sid = seatObj.get("sid").toString();
+       //System.out.println(sid);
+
+        
+      //  Section sec;
+      //  Section nsec = iseat.createSections("", 0, 0);
+        
+        for(int i = 0; i < seatJSON.size(); i++)
+        {
+        		JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
+        		Section sec = gson.fromJson(seatJSONobj, Section.class);
+        		Section nsec = iseat.createSections(sec.getSection_name(), sec.getSid(), sec.getPrice());
+        		
+        		for(int row = 1; row<=4; row++) {
+        			initSeating = iseat.createSeating(row);
+        			
+        			for(int seat = 1; seat<=4; seat++) {
+        				initSeat = iseat.createSeats(seat);
+        				initSeating.seats.add(initSeat);
+        			}
+        			nsec.seating.add(initSeating);
+        		}
+        		
+        		
+        		ns.add(nsec);
+        }
+        
+   /*     
+		//Front Right
+		initSection = iseat.createSections("Front Right", 123, 0);
+		for(int row = 1; row<=4; row++) {
+			initSeating = iseat.createSeating(row);
+			
+			for(int seat = 1; seat<=4; seat++) {
+				initSeat = iseat.createSeats(seat);
+				initSeating.seats.add(initSeat);
+			}
+			initSection.seating.add(initSeating);
+		} */
+		
+		
+  
      
-     return Response.ok(st).build();
+	Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
+	String st = gsonb.toJson("Done! :)");
+	     
+	return Response.ok(st).build();
+	
+	 /*     
+    Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
+    String st = gsonb.toJson(ns.getID());
+    
+    return Response.ok(st).build(); */
+     
     }
     
     //UPDATE SHOWS

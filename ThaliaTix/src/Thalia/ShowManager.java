@@ -13,8 +13,8 @@ public class ShowManager implements InterfaceShows {
         return(Shows);
     }
 
-    public shows createShow(String name, String web, String date, String time, int sid, double price) {
-        shows s= new shows(name, web, date, time, sid, price);
+    public shows createShow(String name, String web, String date, String time/*, int sid, double price*/) {
+        shows s= new shows(name, web, date, time/*, sid, price*/);
         Shows.add(s);
         return(s);
     }

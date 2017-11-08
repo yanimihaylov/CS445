@@ -8,8 +8,8 @@ public class SeatingManager implements InterfaceSeating {
 	
 		private static List<Section> Sections = new ArrayList<Section>();
 	
-	   public Section createSections(String sct_name, int sID) {
-		   Section s= new Section(sct_name, sID);
+	   public Section createSections(String sct_name, int sID, int price) {
+		   Section s= new Section(sct_name, sID, price);
 		   Sections.add(s);
 	       return(s);
 	    }
