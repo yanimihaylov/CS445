@@ -6,7 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
@@ -17,6 +17,8 @@ public class REST_shows {
 	
 	private InterfaceShows is = new ShowManager();
 	private InterfaceSeating iseat = new SeatingManager();
+	private requestShows rs = new requestShows();
+	private initTheater it = new initTheater();
 	Section initSection;
 	Seating initSeating;
 	Seat initSeat;
@@ -26,126 +28,13 @@ public class REST_shows {
     public void postConstruct() {
         //Initialize theater seating
     		
-		Section initSection;
-		Seating initSeating;
-		Seat initSeat;
-		
-		//Front Right
-		initSection = iseat.createSections("Front Right", 123, 0);
-		for(int row = 1; row<=4; row++) {
-			initSeating = iseat.createSeating(row);
-			
-			for(int seat = 1; seat<=4; seat++) {
-				initSeat = iseat.createSeats(seat);
-				initSeating.seats.add(initSeat);
-			}
-			initSection.seating.add(initSeating);
-		}
-		
-		
-		//Front Center
-		initSection = iseat.createSections("Front Center", 124, 0);
-		for(int row = 1; row<=2; row++) {
-			initSeating = iseat.createSeating(row);
-			
-			for(int seat = 5; seat<=8; seat++) {
-				initSeat = iseat.createSeats(seat);
-				initSeating.seats.add(initSeat);
-			}
-			initSection.seating.add(initSeating);
-		}
-		
-		initSeating = iseat.createSeating(3);
-		for(int seat = 5; seat<=9; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
-		initSeating = iseat.createSeating(4);
-		for(int seat = 5; seat<=10; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
-		
-		//Front Left
-		initSection = iseat.createSections("Front Left", 125, 0);
-		for(int row = 1; row<=4; row++) {
-			initSeating = iseat.createSeating(row);
-			
-			for(int seat = 1; seat<=4; seat++) {
-				initSeat = iseat.createSeats(seat);
-				initSeating.seats.add(initSeat);
-			}
-			initSection.seating.add(initSeating);
-		}
-
-		
-		
-		//Main Right
-		initSection = iseat.createSections("Main Right", 126, 0);
-		for(int row = 5; row<=7; row++) {
-			initSeating = iseat.createSeating(row);
-					
-			for(int seat = 1; seat<=5; seat++) {
-				initSeat = iseat.createSeats(seat);
-				initSeating.seats.add(initSeat);
-			}
-			initSection.seating.add(initSeating);
-		}
-		
-		//Main Center
-		initSection = iseat.createSections("Main Center", 127, 0);
-		
-		initSeating = iseat.createSeating(5);
-		for(int seat = 6; seat<=11; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
-		initSeating = iseat.createSeating(6);
-		for(int seat = 6; seat<=12; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
-		initSeating = iseat.createSeating(7);
-		for(int seat = 6; seat<=13; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-
-		
-		
-		//Main Left
-		initSection = iseat.createSections("Main Center", 128, 0);
-		
-		initSeating = iseat.createSeating(5);
-		for(int seat = 12; seat<=16; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
-		initSeating = iseat.createSeating(6);
-		for(int seat = 13; seat<=17; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
-		initSeating = iseat.createSeating(7);
-		for(int seat = 14; seat<=18; seat++) {
-			initSeat = iseat.createSeats(seat);
-			initSeating.seats.add(initSeat);
-		}
-		initSection.seating.add(initSeating);
-		
+	}
+	
+	@GET
+	@Path("/")
+	public Response initTheater() {
+		it.create();
+        return Response.status(Response.Status.OK).entity("Theater Built!").build();
 	}
     
     
@@ -153,7 +42,7 @@ public class REST_shows {
 	@Path("/show")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response controlLamp(String json) {
+    public Response createShows(String json) {
 		
         Gson gson = new Gson();
         
@@ -167,68 +56,42 @@ public class REST_shows {
 		String showString = showJSON.toString();
 		String seatString = seatJSON.get(0).toString();
 		
-		
-		
-		System.out.println(showString);
-		System.out.println(seatString);
-		
         shows s = gson.fromJson(showString, shows.class); 
         shows ns = is.createShow(s.getName(), s.getWeb(), s.getDate(), s.getTime());
-        
-       // String sid = seatObj.get("sid").toString();
-       //System.out.println(sid);
-
-        
-      //  Section sec;
-      //  Section nsec = iseat.createSections("", 0, 0);
         
         for(int i = 0; i < seatJSON.size(); i++)
         {
         		JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
         		Section sec = gson.fromJson(seatJSONobj, Section.class);
         		Section nsec = iseat.createSections(sec.getSection_name(), sec.getSid(), sec.getPrice());
+        		int cid;
         		
-        		for(int row = 1; row<=4; row++) {
-        			initSeating = iseat.createSeating(row);
-        			
-        			for(int seat = 1; seat<=4; seat++) {
-        				initSeat = iseat.createSeats(seat);
-        				initSeating.seats.add(initSeat);
-        			}
-        			nsec.seating.add(initSeating);
-        		}
-        		
+        		if(sec.getSid()==123) {
+        			nsec = it.initFrontRight();
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==124) {
+        			nsec = it.initFrontCenter();
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==125) {
+        			nsec = it.initFrontLeft();        
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==126) {
+        			nsec = it.initMainRight();
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==127) {
+        			nsec = it.initMainCenter();        		
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==128) {
+        			nsec = it.initMainLeft();}
         		
         		ns.add(nsec);
-        }
-        
-   /*     
-		//Front Right
-		initSection = iseat.createSections("Front Right", 123, 0);
-		for(int row = 1; row<=4; row++) {
-			initSeating = iseat.createSeating(row);
-			
-			for(int seat = 1; seat<=4; seat++) {
-				initSeat = iseat.createSeats(seat);
-				initSeating.seats.add(initSeat);
-			}
-			initSection.seating.add(initSeating);
-		} */
-		
-		
-  
+
+        }  
      
 	Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
 	String st = gsonb.toJson("Done! :)");
 	     
 	return Response.ok(st).build();
-	
-	 /*     
-    Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
-    String st = gsonb.toJson(ns.getID());
-    
-    return Response.ok(st).build(); */
-     
     }
     
     //UPDATE SHOWS
@@ -250,7 +113,7 @@ public class REST_shows {
         }
         else {
         		is.updateShow(id, s);
-        		return Response.status(Response.Status.ACCEPTED).entity("Accepted").build();        }
+        		return Response.status(Response.Status.ACCEPTED).entity("Show updated.").build();        }
     }
     
     
@@ -258,12 +121,12 @@ public class REST_shows {
     @Path("/show/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificShow(@PathParam("id") int lid) {
+    public Response getSpecificShow(@PathParam("id") int wid) {
         // call the "Get Show Detail" use case
-        shows s = is.getShowDetail(lid);
+        shows s = is.getShowDetail(wid);
         if (s.isNil()) {
             // return a 404
-            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + lid).build();
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
         } else {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String st = gson.toJson(s);
@@ -278,13 +141,57 @@ public class REST_shows {
     public Response getAllShows() {
         // calls the "Get All Shows" use case
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson(is.getAllShows());
+        List<shows> showsList = is.getAllShows();
+        String s = gson.toJson(showsList);
         return Response.status(Response.Status.OK).entity(s).build();
     }
     
     
-    ///////////////////////////////SEATING///////////////////////////////
     
+    //VIEW SHOW SECTIONS
+    @Path("/show/{id}/sections")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getShowSections(@PathParam("id") int wid) {
+        // call the "Get Show Detail" use case
+        shows s = is.getShowDetail(wid);
+        if (s.isNil()) {
+            // return a 404
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
+        } else {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String st = gson.toJson(s.getSections());
+           
+            return Response.ok(st).build();
+        }
+    }
+    
+    
+  //VIEW SHOW SPECIFIC SECTION
+    @Path("/show/{id}/sections/{sid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getShowSpecificSection(@PathParam("id") int wid, @PathParam("sid") int sid) {
+        // call the "Get Show Detail" use case
+        Section s = is.getSpecificSection(wid, sid);
+        if (s.isNil()) {
+            // return a 404
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
+        } else {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String st = gson.toJson(s);
+            
+            return Response.ok(st).build();
+        }
+    }
+    
+    
+    
+    
+    
+    
+    ///////////////////////////////SEATING///////////////////////////////
+  /*  
     //VIEW ALL SEATING
     @Path("/seating")
     @GET
@@ -295,17 +202,17 @@ public class REST_shows {
         String s = gson.toJson(iseat.getAllSeats());
         return Response.status(Response.Status.OK).entity(s).build();
     }
-    
+    */
     //VIEW SPECIFIC SECTION
     @Path("/seating/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificSection(@PathParam("id") int lid) {
+    public Response getSpecificSection(@PathParam("id") int wid) {
         // call the "Get Show Detail" use case
-        Section s = iseat.getSectionDetail(lid);
+        Section s = iseat.getSectionDetail(wid);
         if (s.isNil()) {
             // return a 404
-            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + lid).build();
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
         } else {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String st = gson.toJson(s);
@@ -313,5 +220,76 @@ public class REST_shows {
         }
     }
     
+    
+    //REQUEST SEATS AUTO
+    @Path("/seating")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAutoSeats(@QueryParam("show") int wid, @QueryParam("section") int sid, @QueryParam("count") int count, @QueryParam("cid") int cid) {
+        // call the "Get Show Detail" use case
+        requestResponse response = rs.autoShows(wid, sid, count);
+        if (response.isNil()) {
+            // return a 404
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
+        } else {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String st = gson.toJson(response);
+            return Response.ok(st).build();
+        }
+    }
+    
+    
+    
+    
+    
+    ///////////////////////////////ORDERS///////////////////////////////
+
+   /* //CREATE SHOWS
+ 	@Path("/orders")
+     @POST
+     @Produces(MediaType.APPLICATION_JSON)
+     public Response createOrders(String json) {
+ 		
+         Gson gson = new Gson();
+         
+         JsonObject obj = gson.fromJson(json, JsonObject.class);
+ 		JsonElement patronJSON = obj.get("patron_info");
+ 		
+ 		JsonArray seatJSON = obj.getAsJsonArray("seats");
+ 		
+ 		//JsonObject seatObj = seatJSON.getAsJsonObject();
+ 		
+ 		String patronString = patronJSON.toString();
+ 		String seatString = seatJSON.get(0).toString();
+ 		
+         shows s = gson.fromJson(showString, shows.class); 
+         shows ns = is.createShow(s.getName(), s.getWeb(), s.getDate(), s.getTime());
+         
+         for(int i = 0; i < seatJSON.size(); i++)
+         {
+         		JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
+         		Section sec = gson.fromJson(seatJSONobj, Section.class);
+         		Section nsec = iseat.createSections(sec.getSection_name(), sec.getSid(), sec.getPrice());
+         		
+         		for(int row = 1; row<=4; row++) {
+         			initSeating = iseat.createSeating(row);
+         			
+         			for(int seat = 1; seat<=4; seat++) {
+         				initSeat = iseat.createSeats(seat);
+         				initSeating.seats.add(initSeat);
+         			}
+         			nsec.seating.add(initSeating);
+         		}
+         		
+         		
+         		ns.add(nsec);
+         }  
+      
+ 	Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
+ 	String st = gsonb.toJson("Done! :)");
+ 	     
+ 	return Response.ok(st).build();
+     }
+     */
 }
 

@@ -1,6 +1,7 @@
 package Thalia;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class shows {
@@ -12,22 +13,21 @@ public class shows {
 	private String date;
 	private String time;
 	
-	private int sid;
-	private double price;
+	private showInfo showInfo;
 	private List<Section> sections = new ArrayList<Section>();
 	
 	public shows() {
 	}
 	
-	public shows(String name, String web, String date, String time/*, int sid, double price*/) {
-		this.name = name;
-		this.web = web;
-		this.date = date;
-		this.time = time;
-		/*this.sid = sid;
-		this.price = price;*/
+	public shows(String name, String web, String date, String time) {
+		showInfo = new showInfo(name, web, date, time);
 		
 		this.wid = UniqueIdGenerator.getUniqueID();
+	}
+	
+	
+	public showInfo getShowInfo() {
+		return showInfo;
 	}
 	
 	public int getID() {
@@ -57,13 +57,13 @@ public class shows {
 	public String getTime() {
 		return time;
 	}
-
-	public int getSid() {
-		return sid;
+	
+	public List<Section> getSections(){
+		return sections;
 	}
 
-	public double getPrice() {
-		return price;
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
 	}
 
 	public void setWid(int wid) {
@@ -72,6 +72,11 @@ public class shows {
 	
 	public void add(Section sec) {
 		sections.add(sec);
+	}
+	
+	public String toString() {
+		String result = wid + " " +showInfo;
+		return result;
 	}
 
 }

@@ -7,8 +7,7 @@ public class Section {
 	
 	private int sid;
 	private String section_name;
-	private Seating seats;
-	int price;
+	private int price;
 	
 
 	public List<Seating> seating = new ArrayList<Seating>();
@@ -41,12 +40,7 @@ public class Section {
 	public void setSection_name(String section_name) {
 		this.section_name = section_name;
 	}
-	public Seating getSeats() {
-		return seats;
-	}
-	public void setSeats(Seating seats) {
-		this.seats = seats;
-	}
+
 	public int getPrice() {
 		return price;
 	}
@@ -58,6 +52,11 @@ public class Section {
 	}
 	public void setSeating(List<Seating> seating) {
 		this.seating = seating;
+	}
+	
+	public String toString() {
+		String res = "Section name " + section_name + ", Section ID " + sid + ", Price " + price;
+		return res;
 	}
 
 }

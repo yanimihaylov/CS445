@@ -23,8 +23,8 @@ public class SeatingManager implements InterfaceSeating {
 		return s;
 	}
 
-	public Seat createSeats(int id) {
-		Seat s = new Seat(id);
+	public Seat createSeats(int id, int seat) {
+		Seat s = new Seat(id, seat);
 		return s;
 	}
 	

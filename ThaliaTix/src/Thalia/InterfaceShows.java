@@ -8,5 +8,7 @@ public interface InterfaceShows {
     shows createShow(String name, String web, String date, String time/*, int sid, double price*/);
     shows getShowDetail(int lid);
     void updateShow(int id, shows s);
+    Section getSpecificSection(int lid, int sid);
+    
     
 }

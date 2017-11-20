@@ -1,20 +1,35 @@
 package Thalia;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class ShowManager implements InterfaceShows {
 	
     private static List<shows> Shows = new ArrayList<shows>();
+    private static List<shows> allShows = new ArrayList<shows>();
+
     private int location;
+    private static List<Section> Sections = new ArrayList<Section>();
+    
+    
 
     public List<shows> getAllShows() {
-        return(Shows);
+    		for(int i = 0; i<Shows.size(); i++) {
+    			shows s = Shows.get(i);
+    			allShows.add(s);
+    		}
+    		/*
+    		for(int i=0; i<allShows.size(); i++) {
+    			allShows.get(i).setSections(null);
+    		}*/
+    		
+        return(allShows);
     }
 
-    public shows createShow(String name, String web, String date, String time/*, int sid, double price*/) {
-        shows s= new shows(name, web, date, time/*, sid, price*/);
+    public shows createShow(String name, String web, String date, String time) {
+        shows s= new shows(name, web, date, time);
         Shows.add(s);
         return(s);
     }
@@ -43,6 +58,21 @@ public class ShowManager implements InterfaceShows {
 	public shows getShowDetail(int lid) {
 		return(findById(lid));
 	}
+	
+	public Section getSpecificSection(int lid, int sid) {
+		shows sh = getShowDetail(lid);
+		Sections = sh.getSections();
+		for(int i=0; i<Sections.size(); i++) {
+			//try for loop instead of list iterator
+			Section s = Sections.get(i);
+			if(s.getSid() == (sid)) {
+				return s;
+    			}
+		}
+			return(new NullSection());
+	}
+	
+	
 	
 	
 }

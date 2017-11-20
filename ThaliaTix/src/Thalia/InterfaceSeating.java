@@ -11,7 +11,7 @@ public interface InterfaceSeating {
 	
 	Seating createSeating(int r);
 	
-	Seat createSeats(int id);
+	Seat createSeats(int id, int seat);
 	
 	Section getSectionDetail(int id);
 
