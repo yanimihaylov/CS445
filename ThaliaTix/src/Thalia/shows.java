@@ -1,7 +1,6 @@
 package Thalia;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class shows {
@@ -22,7 +21,7 @@ public class shows {
 	public shows(String name, String web, String date, String time) {
 		showInfo = new showInfo(name, web, date, time);
 		
-		this.wid = UniqueIdGenerator.getUniqueID();
+		this.wid = UniqueIdGenerator.getUniqueShowID();
 	}
 	
 	

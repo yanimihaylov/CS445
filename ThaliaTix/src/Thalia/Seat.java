@@ -21,4 +21,21 @@ public class Seat{
 	public int getCid() {
 		return cid;
 	}
+	
+	public int getSeat() {
+		return seat;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 }
+

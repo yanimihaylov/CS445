@@ -1,7 +1,6 @@
 package Thalia;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,7 +50,6 @@ public class ShowManager implements InterfaceShows {
     }
     
     public void updateShow(int id, shows s) {
-    		shows rep = findById(id);
     		Shows.set(location, s);
     }
 
