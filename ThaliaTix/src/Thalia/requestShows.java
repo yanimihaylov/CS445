@@ -6,7 +6,6 @@ import java.util.List;
 public class requestShows {
 
 	private InterfaceShows is = new ShowManager();
-	private InterfaceSeating iseat = new SeatingManager();
     private static List<Section> Sections = new ArrayList<Section>();
     
     private Section section = new Section();
@@ -22,9 +21,6 @@ public class requestShows {
 		
 		List<Seat> AvailableSeats = new ArrayList<Seat>();
 		List<Seating> AvailableSeating = new ArrayList<Seating>();
-		
-		List<Seat> FoundSeats = new ArrayList<Seat>();
-		List<Seating> FoundSeating = new ArrayList<Seating>();
 		
 		shows s = is.getShowDetail(wid);
 		Sections = s.getSections();

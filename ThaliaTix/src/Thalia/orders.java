@@ -21,8 +21,11 @@ public class orders {
 		
 	}
 	
-	public orders(int wid, int sid, String name, String phone, String email, String b_a, String cc_n, String cc_exp_d) {
+	public orders(int wID, int sID, String name, String phone, String email, String b_a, String cc_n, String cc_exp_d) {
 		pat = new patron(name, phone, email, b_a, cc_n, cc_exp_d);
+		sid = sID;
+		wid = wID;
+		
 		dateOrdered = new Date();
 		this.oid = UniqueIdGenerator.getUniqueOrderID();
 		

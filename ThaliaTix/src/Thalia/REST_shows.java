@@ -88,6 +88,7 @@ public class REST_shows {
         			nsec = it.initMainLeft();}
         		
         		ns.add(nsec);
+        		
 
         }  
      

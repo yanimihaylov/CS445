@@ -53,10 +53,5 @@ public class Section {
 	public void setSeating(List<Seating> seating) {
 		this.seating = seating;
 	}
-	
-	public String toString() {
-		String res = "Section name " + section_name + ", Section ID " + sid + ", Price " + price;
-		return res;
-	}
 
 }

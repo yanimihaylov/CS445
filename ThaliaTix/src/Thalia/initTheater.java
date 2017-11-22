@@ -10,10 +10,6 @@ public class initTheater {
 	int cid;
 	public void create() {
 		
-		Section initSection;
-		Seating initSeating;
-		Seat initSeat;
-		
 		initSection = initFrontRight();
 		initSection = initFrontCenter();
 		initSection = initFrontLeft();
@@ -123,9 +119,17 @@ public class initTheater {
 		initSection = iseat.createSections("Main Right", 126, 0);
 		for(int row = 5; row<=7; row++) {
 			initSeating = iseat.createSeating(row);
+			
+			cid=0;
+			if(row==5)
+				cid+=251;
+			if(row==6)
+				cid+=267;
+			if(row==7)
+				cid+=284;
 					
 			for(int seat = 1; seat<=5; seat++) {
-				initSeat = iseat.createSeats(cid+seat-4, seat);
+				initSeat = iseat.createSeats(cid+seat, seat);
 				initSeating.seats.add(initSeat);
 			}
 			initSection.seating.add(initSeating);
@@ -140,6 +144,8 @@ public class initTheater {
 		
 		initSeating = iseat.createSeating(5);
 		for(int seat = 6; seat<=11; seat++) {
+			cid=0;
+			cid+=256;
 			initSeat = iseat.createSeats(cid+seat-5, seat);
 			initSeating.seats.add(initSeat);
 		}
@@ -147,6 +153,8 @@ public class initTheater {
 		
 		initSeating = iseat.createSeating(6);
 		for(int seat = 6; seat<=12; seat++) {
+			cid=0;
+			cid+=272;
 			initSeat = iseat.createSeats(cid+seat-5, seat);
 			initSeating.seats.add(initSeat);
 		}
@@ -154,6 +162,8 @@ public class initTheater {
 		
 		initSeating = iseat.createSeating(7);
 		for(int seat = 6; seat<=13; seat++) {
+			cid=0;
+			cid+=289;
 			initSeat = iseat.createSeats(cid+seat-5, seat);
 			initSeating.seats.add(initSeat);
 		}
@@ -165,10 +175,12 @@ public class initTheater {
 	
 	public Section initMainLeft() {
 		//Main Left
-		initSection = iseat.createSections("Main Center", 128, 0);
+		initSection = iseat.createSections("Main Left", 128, 0);
 		
 		initSeating = iseat.createSeating(5);
 		for(int seat = 12; seat<=16; seat++) {
+			cid=0;
+			cid+=262;
 			initSeat = iseat.createSeats(cid+seat-11, seat);
 			initSeating.seats.add(initSeat);
 		}
@@ -176,6 +188,8 @@ public class initTheater {
 		
 		initSeating = iseat.createSeating(6);
 		for(int seat = 13; seat<=17; seat++) {
+			cid=0;
+			cid+=279;
 			initSeat = iseat.createSeats(cid+seat-12, seat);
 			initSeating.seats.add(initSeat);
 		}
@@ -183,6 +197,8 @@ public class initTheater {
 		
 		initSeating = iseat.createSeating(7);
 		for(int seat = 14; seat<=18; seat++) {
+			cid=0;
+			cid+=297;
 			initSeat = iseat.createSeats(cid+seat-13, seat);
 			initSeating.seats.add(initSeat);
 		}

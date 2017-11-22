@@ -16,6 +16,7 @@ public class shows {
 	private List<Section> sections = new ArrayList<Section>();
 	
 	public shows() {
+		
 	}
 	
 	public shows(String name, String web, String date, String time) {
@@ -71,11 +72,6 @@ public class shows {
 	
 	public void add(Section sec) {
 		sections.add(sec);
-	}
-	
-	public String toString() {
-		String result = wid + " " +showInfo;
-		return result;
 	}
 
 }

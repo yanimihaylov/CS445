@@ -19,6 +19,14 @@ public class Seating{
 	public void setSeats(List<Seat> seats) {
 		this.seats = seats;
 	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
 	
 
 }

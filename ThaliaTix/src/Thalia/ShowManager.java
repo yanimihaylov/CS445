@@ -19,10 +19,6 @@ public class ShowManager implements InterfaceShows {
     			shows s = Shows.get(i);
     			allShows.add(s);
     		}
-    		/*
-    		for(int i=0; i<allShows.size(); i++) {
-    			allShows.get(i).setSections(null);
-    		}*/
     		
         return(allShows);
     }
@@ -61,7 +57,6 @@ public class ShowManager implements InterfaceShows {
 		shows sh = getShowDetail(lid);
 		Sections = sh.getSections();
 		for(int i=0; i<Sections.size(); i++) {
-			//try for loop instead of list iterator
 			Section s = Sections.get(i);
 			if(s.getSid() == (sid)) {
 				return s;
@@ -69,8 +64,4 @@ public class ShowManager implements InterfaceShows {
 		}
 			return(new NullSection());
 	}
-	
-	
-	
-	
 }
