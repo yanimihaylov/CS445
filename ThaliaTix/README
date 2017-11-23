@@ -1,0 +1,14 @@
+#install Ant
+sudo apt-get install ant
+
+#Build project and Create .war
+ant build
+ant war
+
+#move .war to tomcat/webapps
+sudo mv thalia.war /opt/tomcat/webapps
+
+#Run server
+cd /opt/tomcat/bin
+chmod 744 *sh
+./startup.sh

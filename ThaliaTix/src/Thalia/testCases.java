@@ -16,6 +16,7 @@ public class testCases {
 	private requestShows rs = new requestShows();
 	private Section sec;
 	private initTheater it = new initTheater();
+	private 
 	int createdShowObjects=0;
 	int price=0;
 
@@ -43,16 +44,16 @@ public class testCases {
 		Section sec6 = iseat.createSections("Main Left", 128, 350);
 		
 		shows sh1 = is.createShow("name", "web", "date", "time");
-		sh1.add(sec1);
+		sh1.add(0, sec1);
 		createdShowObjects++;
 		shows sh2 = is.createShow("name", "web", "date", "time");
-		sh2.add(sec1);
-		sh2.add(sec2);
+		sh2.add(0, sec1);
+		sh2.add(1, sec2);
 		createdShowObjects++;
 		shows sh3 = is.createShow("name", "web", "date", "time");
-		sh3.add(sec1);
-		sh3.add(sec2);
-		sh3.add(sec3);
+		sh3.add(0, sec1);
+		sh3.add(1, sec2);
+		sh3.add(2, sec3);
 		createdShowObjects++;	
 		
 		orders ord = iord.createOrder(1, 123, "name", "phone", "email", "b_a", "cc_n", "cc_exp_d");
@@ -132,8 +133,6 @@ public class testCases {
     		assertTrue(t.isNil());
     }
     
-    
-    
     @Test
     public void test_createShow() {
     		shows s = is.createShow("name", "web", "date", "time");
@@ -141,7 +140,6 @@ public class testCases {
     		assertTrue(s.getShowInfo().getName().equals("name") && s.getShowInfo().getWeb().equals("web") && s.getShowInfo().getDate().equals("date") && s.getShowInfo().getTime().equals("time"));
     		
     }
-    
 
     
     @Test

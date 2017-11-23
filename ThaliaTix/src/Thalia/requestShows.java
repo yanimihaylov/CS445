@@ -22,6 +22,8 @@ public class requestShows {
 		List<Seat> AvailableSeats = new ArrayList<Seat>();
 		List<Seating> AvailableSeating = new ArrayList<Seating>();
 		
+		response.setStarting_seat_id(starting);
+		
 		shows s = is.getShowDetail(wid);
 		Sections = s.getSections();
 		for(int i = 0; i<Sections.size(); i++) {
@@ -46,13 +48,13 @@ public class requestShows {
 			AvailableSeats = new ArrayList<Seat>();
 			
 			for(int j = 1; j<Seat.size(); j++) {
-				if(((Seat.get(j-1).getStatus()==true) && ((Seat.get(j).getCid()-Seat.get(j-1).getCid()) == 1)) && (Seat.get(j-1).getCid()>starting)){
+				if(((Seat.get(j-1).getStatus()==true) && ((Seat.get(j).getCid()-Seat.get(j-1).getCid()) == 1)) && (Seat.get(j-1).getCid()>=starting)){
 					if(j==1 && count==1) {
 						AvailableSeats.add(Seat.get(j-1));
 						found++;
 
 					}
-					if(j==1 && count!=1) {
+					if(j==1 && count > 2) {
 						AvailableSeats.add(Seat.get(j-1));
 						found++;
 						AvailableSeats.add(Seat.get(j));

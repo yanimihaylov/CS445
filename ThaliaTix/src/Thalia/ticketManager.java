@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ticketManager implements InterfaceTicket{
     private static List<ticket> Tickets = new ArrayList<ticket>();
+    private static List<ticket> availableDonatedTickets = new ArrayList<ticket>();
     int location;
 
     
@@ -18,6 +19,10 @@ public class ticketManager implements InterfaceTicket{
     public List<ticket> getAllTickets(){
     		return Tickets;
     }
+    
+    public List<ticket> getAllDonatedTickets(){
+		return availableDonatedTickets;
+}
     
     private ticket findById(int tid) {
     	location = 0;
@@ -37,5 +42,13 @@ public class ticketManager implements InterfaceTicket{
     
 	public ticket getTicketDetail(int tid) {
 		return(findById(tid));
+	}
+	
+	public void donateTicket(ArrayList<Integer> tic) {
+		for(int i=0; i<tic.size(); i++) {
+			ticket t = findById(tic.get(i));
+			t.setStatus("donated");
+			availableDonatedTickets.add(t);
+		}
 	}
 }

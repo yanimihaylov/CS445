@@ -16,13 +16,14 @@ import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-@Path("/thalia")
+@Path("/")
 public class REST_shows {
 	
 	private InterfaceShows is = new ShowManager();
 	private InterfaceSeating iseat = new SeatingManager();
 	private interfaceOrders iord = new orderManager();
 	private InterfaceTicket itic = new ticketManager();
+	private interfaceSub isub = new subManager();
 	private requestShows rs = new requestShows();
 	private initTheater it = new initTheater();
 	Section initSection;
@@ -37,7 +38,7 @@ public class REST_shows {
 	}
 	
 	@GET
-	@Path("/")
+	@Path("/thalia")
 	public Response initTheater() {
 		it.create();
         return Response.status(Response.Status.OK).entity("Theater Built!").build();
@@ -87,7 +88,7 @@ public class REST_shows {
         		if(sec.getSid()==128) {
         			nsec = it.initMainLeft();}
         		
-        		ns.add(nsec);
+        		ns.add(i, nsec);
         		
 
         }  
@@ -106,8 +107,49 @@ public class REST_shows {
     	
     		int id = showID;
     		Gson gson = new Gson();
-        shows s = gson.fromJson(json, shows.class);
         shows sIn = is.getShowDetail(id);
+        shows s = gson.fromJson(json, shows.class);
+        
+        
+        JsonObject obj = gson.fromJson(json, JsonObject.class);
+		JsonElement showJSON = obj.get("show_info");
+		
+		JsonArray seatJSON = obj.getAsJsonArray("seating_info");
+		
+		
+		String showString = showJSON.toString();
+		
+        showInfo sInfo = gson.fromJson(showString, showInfo.class);
+        s.setShowInfo(sInfo);
+        
+        for(int i = 0; i < seatJSON.size(); i++)
+        {
+        		JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
+        		Section sec = gson.fromJson(seatJSONobj, Section.class);
+        		Section nsec = iseat.createSections(sec.getSection_name(), sec.getSid(), sec.getPrice());
+        		
+        		if(sec.getSid()==123) {
+        			nsec = it.initFrontRight();
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==124) {
+        			nsec = it.initFrontCenter();
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==125) {
+        			nsec = it.initFrontLeft();        
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==126) {
+        			nsec = it.initMainRight();
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==127) {
+        			nsec = it.initMainCenter();        		
+        			nsec.setPrice(sec.getPrice());}
+        		if(sec.getSid()==128) {
+        			nsec = it.initMainLeft();}
+        		
+        		s.set(i, nsec);
+        		
+
+        }  
         
         s.setWid(id);
         
@@ -132,8 +174,24 @@ public class REST_shows {
             // return a 404
             return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
         } else {
+        	
+        	
+        	
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String st = gson.toJson(s);
+            
+            JsonObject obj = gson.fromJson(st, JsonObject.class);
+            //obj.getAsJsonObject().remove("price");
+            JsonArray objArr = obj.getAsJsonArray("seating_info"); 
+            for(int i=0; i<objArr.size(); i++) {
+            		
+            		objArr.get(i).getAsJsonObject().remove("seating");
+            		objArr.get(i).getAsJsonObject().remove("section_name");
+            		
+            }
+            
+            st = gson.toJson(obj);
+            
             return Response.ok(st).build();
         }
     }
@@ -146,7 +204,15 @@ public class REST_shows {
         // calls the "Get All Shows" use case
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<shows> showsList = is.getAllShows();
+
         String s = gson.toJson(showsList);
+        JsonArray objArr = gson.fromJson(s, JsonArray.class);
+        
+        for(int i=0; i<objArr.size(); i++) {
+	        objArr.get(i).getAsJsonObject().remove("sections");
+        }
+        s = gson.toJson(objArr);
+        
         return Response.status(Response.Status.OK).entity(s).build();
     }
     
@@ -163,9 +229,16 @@ public class REST_shows {
             // return a 404
             return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
         } else {
+        	
+        	
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String st = gson.toJson(s.getSections());
-           
+            
+            JsonArray objArr = gson.fromJson(st, JsonArray.class);
+            for(int i=0; i<objArr.size(); i++) {
+            		objArr.get(i).getAsJsonObject().remove("seating");
+            }
+            st = gson.toJson(objArr);
             return Response.ok(st).build();
         }
     }
@@ -177,36 +250,113 @@ public class REST_shows {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowSpecificSection(@PathParam("id") int wid, @PathParam("sid") int sid) {
         // call the "Get Show Detail" use case
+    		shows sh = is.getShowDetail(wid);
         Section s = is.getSpecificSection(wid, sid);
         if (s.isNil()) {
             // return a 404
             return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
         } else {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String st = gson.toJson(s);
             
-            return Response.ok(st).build();
+            String shSt = gson.toJson(sh);
+            
+            JsonObject obj = gson.fromJson(shSt, JsonObject.class);
+            obj.getAsJsonObject().remove("seating_info");
+
+            
+            shSt = gson.toJson(obj);
+            String secSt = gson.toJson(s);
+            
+            
+            shSt = shSt.substring(0, shSt.length()-2);
+            secSt = secSt.substring(1);
+            
+            String totalString =  shSt + ", " + secSt;
+            return Response.ok(totalString).build();
+        }
+    }
+    
+    
+    //SUBSCRIBE TO DONATIONS
+    @Path("/show/{wid}/donations")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response subscribe(@PathParam("wid") int wid,String json) {
+ 		
+        Gson gson = new Gson();
+        
+        JsonObject obj = gson.fromJson(json, JsonObject.class);
+ 		JsonElement patronJSON = obj.get("patron_info");
+ 		JsonElement countJSON = obj.get("count");
+
+ 		
+ 		String patronString = patronJSON.toString();
+        patron pat = gson.fromJson(patronString, patron.class);
+        
+ 	
+ 		int countInt = Integer.parseInt(countJSON.toString());
+ 		
+ 		subscribeDonations subD = isub.createSub(wid, countInt);
+ 		subD.setPatron_info(pat);
+ 		
+ 		
+		
+		Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
+	 	String ret = gsonb.toJson(subD);
+	 	
+	 	JsonObject result = gson.fromJson(ret, JsonObject.class);
+	 	result.remove("patron_info");
+	 	result.remove("wid");
+	 	result.remove("count");
+	 	result.remove("tickets");
+	 	String resultString = gson.toJson(result);
+	 	     
+	 	return Response.ok(resultString).build();
+    }
+    
+    
+    //STATUS OF REQUEST FOR DONATED TICKETS
+    @Path("/show/{id}/donations/{did}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSpecificSub(@PathParam("id") int wid, @PathParam("did") int did) {
+        // call the "Get Show Detail" use case	
+    		subscribeDonations s = isub.getSpecificSub(wid, did);
+        if (s.isNil()) {
+            // return a 404
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + did).build();
+        } else {
+        	
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String res = gson.toJson(s);            
+            return Response.ok(res).build();
         }
     }
     
     
     
     
-    
-    
     ///////////////////////////////SEATING///////////////////////////////
-  /*  
+   
     //VIEW ALL SEATING
-    @Path("/seating")
+/*    @Path("/seating")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllSeats() {
         // calls the "Get All Seats" use case
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String s = gson.toJson(iseat.getAllSeats());
+        JsonArray objArr = gson.fromJson(s, JsonArray.class);
+        
+        for(int i=0; i<objArr.size(); i++) {
+	        objArr.get(i).getAsJsonObject().remove("price");
+	        objArr.get(i).getAsJsonObject().remove("seating");
+        }
+        s = gson.toJson(objArr);
         return Response.status(Response.Status.OK).entity(s).build();
-    }
-    */
+    }*/
+    
+    
     //VIEW SPECIFIC SECTION
     @Path("/seating/{id}")
     @GET
@@ -220,11 +370,26 @@ public class REST_shows {
             return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
         } else {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            
             String st = gson.toJson(s);
+            
+            JsonObject obj = gson.fromJson(st, JsonObject.class);
+            obj.getAsJsonObject().remove("price");
+            
+            for(int i=0; i<obj.getAsJsonArray("seating").size(); i++) {
+            	
+            		JsonArray ja = obj.getAsJsonArray("seating").get(i).getAsJsonObject().getAsJsonArray("seats");
+            		
+            		for(int j=0; j<ja.size(); j++) {
+            			ja.get(j).getAsJsonObject().remove("cid");
+            			ja.get(j).getAsJsonObject().remove("status");
+            		}
+            		
+            }
+            st = gson.toJson(obj);
             return Response.ok(st).build();
         }
     }
-    
     
     //REQUEST SEATS AUTO
     @Path("/seating")
@@ -239,6 +404,12 @@ public class REST_shows {
         } else {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String st = gson.toJson(response);
+            
+            JsonObject obj = gson.fromJson(st, JsonObject.class);
+            
+            obj.getAsJsonObject("info").remove("seating_info");
+            
+            st = gson.toJson(obj);
             return Response.ok(st).build();
         }
     }
@@ -246,10 +417,9 @@ public class REST_shows {
     
     
     
-    
     ///////////////////////////////ORDERS///////////////////////////////
 
-    //CRATE ORDERS
+    //CREATE ORDERS
  	@Path("/orders")
      @POST
      @Produces(MediaType.APPLICATION_JSON)
@@ -324,7 +494,26 @@ public class REST_shows {
          ord.setOrderAmount(price);
  	Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
  	String ret = gsonb.toJson(ord);
+ 	
+ 	JsonObject returnObj = gson.fromJson(ret, JsonObject.class);
+ 	returnObj.remove("sid");
+ 	returnObj.remove("numberOfTickets");
+ 	returnObj.remove("pat");
+ 	JsonArray returnTic = returnObj.getAsJsonArray("tickets");
+ 	
+ 	for(int i=0; i<returnTic.size(); i++) {
+ 		returnTic.get(i).getAsJsonObject().remove("price");
+ 		returnTic.get(i).getAsJsonObject().remove("status");
+ 		returnTic.get(i).getAsJsonObject().remove("wid");
+ 		returnTic.get(i).getAsJsonObject().remove("showInfo");
+ 		returnTic.get(i).getAsJsonObject().remove("patronInfo");
+ 		returnTic.get(i).getAsJsonObject().remove("sid");
+ 		returnTic.get(i).getAsJsonObject().remove("section_name");
+ 		returnTic.get(i).getAsJsonObject().remove("row");
+ 		returnTic.get(i).getAsJsonObject().remove("cid");
+ 	}
  	     
+ 	ret = gsonb.toJson(returnObj);
  	return Response.ok(ret).build();
      }
  	
@@ -338,6 +527,14 @@ public class REST_shows {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<orders> showsList = iord.getAllOrders();
         String s = gson.toJson(showsList);
+        
+        JsonArray objArr = gson.fromJson(s, JsonArray.class);
+        for(int i=0; i<objArr.size(); i++) {
+        		objArr.get(i).getAsJsonObject().remove("sid");
+        		objArr.get(i).getAsJsonObject().remove("tickets");
+        }
+        
+        s =gson.toJson(objArr);
         return Response.status(Response.Status.OK).entity(s).build();
     }
     
@@ -411,7 +608,27 @@ public class REST_shows {
         } else {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String st = gson.toJson(ord);
-            return Response.ok(st).build();
+            
+            
+            JsonObject obj = gson.fromJson(st, JsonObject.class);
+            obj.remove("sid");
+            		
+            		JsonArray ticArr = obj.getAsJsonArray("tickets");
+            		for(int j = 0; j<ticArr.size(); j++) {
+            			
+            			ticArr.get(j).getAsJsonObject().remove("price");
+            			ticArr.get(j).getAsJsonObject().remove("wid");
+            			ticArr.get(j).getAsJsonObject().remove("showInfo");
+            			ticArr.get(j).getAsJsonObject().remove("patronInfo");
+            			ticArr.get(j).getAsJsonObject().remove("sid");
+            			ticArr.get(j).getAsJsonObject().remove("section_name");
+            			ticArr.get(j).getAsJsonObject().remove("row");
+            			ticArr.get(j).getAsJsonObject().remove("cid");
+            		}
+            
+            
+            st =gson.toJson(obj);
+            return Response.status(Response.Status.OK).entity(st).build();
         }
     }
     
@@ -467,5 +684,32 @@ public class REST_shows {
 	 	     
 	 	return Response.ok(ret).build();
     }
+    
+    //DONATE TICKET
+    @Path("/tickets/donations")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response donateTicket(String json) {
+    		ArrayList<Integer> listInt = new ArrayList<Integer>();
+ 		
+        Gson gson = new Gson();
+        
+        JsonObject obj = gson.fromJson(json, JsonObject.class);
+        JsonArray ticArr = obj.getAsJsonArray("tickets");
+        
+        for(int i = 0; i<ticArr.size(); i++) {
+        		JsonElement tidJSON = ticArr.get(i);
+        		int tidInt = Integer.parseInt(tidJSON.toString().substring(1,tidJSON.toString().length()-1));	
+        		listInt.add(tidInt);
+        }
+        
+		itic.donateTicket(listInt);
+		
+		Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
+	 	String ret = gsonb.toJson(obj);
+	 	     
+	 	return Response.ok(ret).build();
+    }
+    
 }
 

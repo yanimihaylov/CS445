@@ -13,7 +13,7 @@ public class shows {
 	private String time;
 	
 	private showInfo showInfo;
-	private List<Section> sections = new ArrayList<Section>();
+	private List<Section> seating_info = new ArrayList<Section>();
 	
 	public shows() {
 		
@@ -30,6 +30,11 @@ public class shows {
 		return showInfo;
 	}
 	
+	
+	public void setShowInfo(showInfo showInfo) {
+		this.showInfo = showInfo;
+	}
+
 	public int getID() {
 		return this.wid;
 	}
@@ -59,19 +64,23 @@ public class shows {
 	}
 	
 	public List<Section> getSections(){
-		return sections;
+		return seating_info;
 	}
 
 	public void setSections(List<Section> sections) {
-		this.sections = sections;
+		this.seating_info = sections;
 	}
 
 	public void setWid(int wid) {
 		this.wid = wid;
 	}
 	
-	public void add(Section sec) {
-		sections.add(sec);
+	public void add(int loc, Section sec) {
+		seating_info.add(loc, sec);
+	}
+	
+	public void set(int loc, Section sec) {
+		seating_info.set(loc, sec);
 	}
 
 }

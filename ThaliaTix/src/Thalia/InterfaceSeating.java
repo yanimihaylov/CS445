@@ -2,8 +2,6 @@ package Thalia;
 
 import java.util.List;
 
-import com.google.gson.JsonElement;
-
 public interface InterfaceSeating {
 	
 	List<Section> getAllSeats();

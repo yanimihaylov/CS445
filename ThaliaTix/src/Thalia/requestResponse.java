@@ -56,7 +56,8 @@ public class requestResponse {
 		this.seating = seating;
 	}
 	
-	public boolean isNil() {
+	
+	  	public boolean isNil() {
         return false;
     }
 }
