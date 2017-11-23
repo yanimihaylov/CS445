@@ -68,24 +68,24 @@ public class REST_shows {
         {
         		JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
         		Section sec = gson.fromJson(seatJSONobj, Section.class);
-        		Section nsec = iseat.createSections(sec.getSection_name(), sec.getSid(), sec.getPrice());
+        		Section nsec = iseat.createSections(sec.getSection_name(), Integer.parseInt(sec.getSid()), sec.getPrice());
         		
-        		if(sec.getSid()==123) {
+        		if(sec.getSid().equals("123")) {
         			nsec = it.initFrontRight();
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==124) {
+        		if(sec.getSid().equals("124")) {
         			nsec = it.initFrontCenter();
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==125) {
+        		if(sec.getSid().equals("125")) {
         			nsec = it.initFrontLeft();        
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==126) {
+        		if(sec.getSid().equals("126")) {
         			nsec = it.initMainRight();
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==127) {
+        		if(sec.getSid().equals("127")) {
         			nsec = it.initMainCenter();        		
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==128) {
+        		if(sec.getSid().equals("128")) {
         			nsec = it.initMainLeft();}
         		
         		ns.add(i, nsec);
@@ -126,24 +126,24 @@ public class REST_shows {
         {
         		JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
         		Section sec = gson.fromJson(seatJSONobj, Section.class);
-        		Section nsec = iseat.createSections(sec.getSection_name(), sec.getSid(), sec.getPrice());
+        		Section nsec = iseat.createSections(sec.getSection_name(), Integer.parseInt(sec.getSid()), sec.getPrice());
         		
-        		if(sec.getSid()==123) {
+        		if(sec.getSid().equals("123")) {
         			nsec = it.initFrontRight();
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==124) {
+        		if(sec.getSid().equals("124")) {
         			nsec = it.initFrontCenter();
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==125) {
+        		if(sec.getSid().equals("125")) {
         			nsec = it.initFrontLeft();        
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==126) {
+        		if(sec.getSid().equals("126")) {
         			nsec = it.initMainRight();
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==127) {
+        		if(sec.getSid().equals("127")) {
         			nsec = it.initMainCenter();        		
         			nsec.setPrice(sec.getPrice());}
-        		if(sec.getSid()==128) {
+        		if(sec.getSid().equals("128")) {
         			nsec = it.initMainLeft();}
         		
         		s.set(i, nsec);
@@ -151,7 +151,7 @@ public class REST_shows {
 
         }  
         
-        s.setWid(id);
+        s.setWid(Integer.toString(id));
         
         if (sIn.isNil()) {
             // return a 404
@@ -159,7 +159,8 @@ public class REST_shows {
         }
         else {
         		is.updateShow(id, s);
-        		return Response.status(Response.Status.ACCEPTED).entity("Show updated.").build();        }
+        		return Response.status(Response.Status.ACCEPTED).entity("Show updated.").build();        
+        		}
     }
     
     
@@ -209,7 +210,7 @@ public class REST_shows {
         JsonArray objArr = gson.fromJson(s, JsonArray.class);
         
         for(int i=0; i<objArr.size(); i++) {
-	        objArr.get(i).getAsJsonObject().remove("sections");
+	        objArr.get(i).getAsJsonObject().remove("seating_info");
         }
         s = gson.toJson(objArr);
         
@@ -322,13 +323,23 @@ public class REST_shows {
     public Response getSpecificSub(@PathParam("id") int wid, @PathParam("did") int did) {
         // call the "Get Show Detail" use case	
     		subscribeDonations s = isub.getSpecificSub(wid, did);
+    		s = isub.checkStatus(s);
         if (s.isNil()) {
             // return a 404
             return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + did).build();
         } else {
         	
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String res = gson.toJson(s);            
+            String res = gson.toJson(s);        
+            
+            JsonObject obj = gson.fromJson(res, JsonObject.class);
+            /*JsonArray arr = obj.getAsJsonArray("tickets");
+            for(int i= 0; i<arr.size(); i++) {
+            		JsonObject tObject = arr.get(i).getAsJsonObject();
+            }*/
+            
+            res = gson.toJson(obj);        
+
             return Response.ok(res).build();
         }
     }
@@ -339,7 +350,7 @@ public class REST_shows {
     ///////////////////////////////SEATING///////////////////////////////
    
     //VIEW ALL SEATING
-/*    @Path("/seating")
+    @Path("/seating")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllSeats() {
@@ -354,7 +365,7 @@ public class REST_shows {
         }
         s = gson.toJson(objArr);
         return Response.status(Response.Status.OK).entity(s).build();
-    }*/
+    }
     
     
     //VIEW SPECIFIC SECTION
@@ -392,7 +403,7 @@ public class REST_shows {
     }
     
     //REQUEST SEATS AUTO
-    @Path("/seating")
+   /* @Path("/seating")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAutoSeats(@QueryParam("show") int wid, @QueryParam("section") int sid, @QueryParam("count") int count, @QueryParam("starting_seat_id") int cid) {
@@ -413,7 +424,7 @@ public class REST_shows {
             return Response.ok(st).build();
         }
     }
-    
+    */
     
     
     
@@ -457,7 +468,7 @@ public class REST_shows {
          {
         	 	JsonObject seatJSONobj = seatJSON.get(i).getAsJsonObject();
      		Seat st = gson.fromJson(seatJSONobj, Seat.class);
-     		int cid = st.getCid();
+     		int cid = Integer.parseInt(st.getCid());
 
      		
             Section sec = is.getSpecificSection(widInt, sidInt);
@@ -471,8 +482,8 @@ public class REST_shows {
      			List<Seat> seats = secArray.get(k).getSeats();
      			
      			for(int j=0; j<seats.size(); j++) {
-     				if(seats.get(j).getCid() == cid) {
-     					seats.get(j).setStatus(false);
+     				if(seats.get(j).getCid().equals(Integer.toString(cid))) {
+     					seats.get(j).setStatus("");
      					
      					//create ticket
      					ticket t = itic.createTicket(price, widInt, sidInt, name);
@@ -501,6 +512,8 @@ public class REST_shows {
  	returnObj.remove("pat");
  	JsonArray returnTic = returnObj.getAsJsonArray("tickets");
  	
+ 	List<String> tIDs = new ArrayList<String>();
+ 	
  	for(int i=0; i<returnTic.size(); i++) {
  		returnTic.get(i).getAsJsonObject().remove("price");
  		returnTic.get(i).getAsJsonObject().remove("status");
@@ -511,7 +524,12 @@ public class REST_shows {
  		returnTic.get(i).getAsJsonObject().remove("section_name");
  		returnTic.get(i).getAsJsonObject().remove("row");
  		returnTic.get(i).getAsJsonObject().remove("cid");
+ 		
+ 		//String tID = returnTic.get(i).getAsJsonObject().get("tid").toString(); 
+ 		//tIDs.add(tID);
  	}
+ 	
+ 	//returnObj.remove("tickets");
  	     
  	ret = gsonb.toJson(returnObj);
  	return Response.ok(ret).build();
@@ -673,7 +691,7 @@ public class REST_shows {
 		List<ticket> tixList = itic.getAllTickets();
 		
 		for(int i=0; i<tixList.size(); i++) {
-			if(tixList.get(i).getTid()==tidInt)
+			if(tixList.get(i).getTid().equals(Integer.toString(tidInt)))
 				tixList.get(i).setStatus(statusString);
 		}
 		

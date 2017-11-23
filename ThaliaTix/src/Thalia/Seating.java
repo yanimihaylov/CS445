@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Seating{
 		
-		int row;
+		String row;
 		public List<Seat> seats = new ArrayList<Seat>();
 		
 	public Seating(int r) {
-		row = r;
+		row = Integer.toString(r);
 	}
 
 	public List<Seat> getSeats() {
@@ -20,12 +20,13 @@ public class Seating{
 		this.seats = seats;
 	}
 
-	public int getRow() {
+	public String getRow() {
 		return row;
 	}
 
-	public void setRow(int row) {
-		this.row = row;
+	public void setRow(int ROW) {
+		
+		this.row = Integer.toString(ROW);
 	}
 	
 

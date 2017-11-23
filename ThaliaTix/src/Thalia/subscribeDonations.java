@@ -5,17 +5,18 @@ import java.util.List;
 
 public class subscribeDonations {
 	
-		private int did;
-		private int wid;
+		private String did;
+		private String wid;
 		private int count;
-		private List<ticket> tickets = new ArrayList<ticket>();
+		private String status;
+		private List<String> tickets = new ArrayList<String>();
 		private patron patron_info;
 		
 		public subscribeDonations(int wID, int c) {
-			wid = wID;
+			wid = Integer.toString(wID);
 			count = c;
 
-			this.did = UniqueIdGenerator.getUniqueDonationID();
+			this.did = Integer.toString(UniqueIdGenerator.getUniqueDonationID());
 		}
 		
 		public subscribeDonations() {
@@ -26,24 +27,24 @@ public class subscribeDonations {
 	        return false;
 	    }
 		
-		public boolean matchesId(int did) {
-			return(did == this.did);
+		public boolean matchesId(int DID) {
+			return(this.did.equals(Integer.toString(DID)));
 		}
 		
-		public int getDid() {
+		public String getDid() {
 			return did;
 		}
 
-		public void setDid(int did) {
-			this.did = did;
+		public void setDid(int DID) {
+			this.did = Integer.toString(DID);
 		}
 
-		public int getWid() {
+		public String getWid() {
 			return wid;
 		}
 
-		public void setWid(int wid) {
-			this.wid = wid;
+		public void setWid(int WID) {
+			this.wid = Integer.toString(WID);
 		}
 
 		public int getCount() {
@@ -54,11 +55,11 @@ public class subscribeDonations {
 			this.count = count;
 		}
 
-		public List<ticket> getTickets() {
+		public List<String> getTickets() {
 			return tickets;
 		}
 
-		public void setTickets(List<ticket> tickets) {
+		public void setTickets(List<String> tickets) {
 			this.tickets = tickets;
 		}
 

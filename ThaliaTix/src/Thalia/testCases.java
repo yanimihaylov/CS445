@@ -77,39 +77,39 @@ public class testCases {
 		it.create();
 		
     		sec1 = it.initFrontRight();
-    		assertTrue(sec1.getSeating().get(0).getSeats().get(0).getCid()==201);
-    		assertTrue(sec1.getSeating().get(1).getSeats().get(0).getCid()==213);
-    		assertTrue(sec1.getSeating().get(2).getSeats().get(0).getCid()==225);
-    		assertTrue(sec1.getSeating().get(3).getSeats().get(0).getCid()==238);
+    		assertTrue(sec1.getSeating().get(0).getSeats().get(0).getCid().equals("201"));
+    		assertTrue(sec1.getSeating().get(1).getSeats().get(0).getCid().equals("213"));
+    		assertTrue(sec1.getSeating().get(2).getSeats().get(0).getCid().equals("225"));
+    		assertTrue(sec1.getSeating().get(3).getSeats().get(0).getCid().equals("238"));
 
     		sec2 = it.initFrontCenter();
-    		assertTrue(sec2.getSeating().get(0).getSeats().get(0).getCid()==205);
-    		assertTrue(sec2.getSeating().get(1).getSeats().get(0).getCid()==217);
-    		assertTrue(sec2.getSeating().get(2).getSeats().get(0).getCid()==229);
-    		assertTrue(sec2.getSeating().get(3).getSeats().get(0).getCid()==242);
+    		assertTrue(sec2.getSeating().get(0).getSeats().get(0).getCid().equals("205"));
+    		assertTrue(sec2.getSeating().get(1).getSeats().get(0).getCid().equals("217"));
+    		assertTrue(sec2.getSeating().get(2).getSeats().get(0).getCid().equals("229"));
+    		assertTrue(sec2.getSeating().get(3).getSeats().get(0).getCid().equals("242"));
     		
     		sec3 = it.initFrontLeft();
-    		assertTrue(sec3.getSeating().get(0).getSeats().get(0).getCid()==209);
-    		assertTrue(sec3.getSeating().get(1).getSeats().get(0).getCid()==221);
-    		assertTrue(sec3.getSeating().get(2).getSeats().get(0).getCid()==234);
-    		assertTrue(sec3.getSeating().get(3).getSeats().get(0).getCid()==248);
+    		assertTrue(sec3.getSeating().get(0).getSeats().get(0).getCid().equals("209"));
+    		assertTrue(sec3.getSeating().get(1).getSeats().get(0).getCid().equals("221"));
+    		assertTrue(sec3.getSeating().get(2).getSeats().get(0).getCid().equals("234"));
+    		assertTrue(sec3.getSeating().get(3).getSeats().get(0).getCid().equals("248"));
 
     		
     		sec4 = it.initMainRight();
-    		assertTrue(sec4.getSeating().get(0).getSeats().get(0).getCid()==252);
-    		assertTrue(sec4.getSeating().get(1).getSeats().get(0).getCid()==268);
-    		assertTrue(sec4.getSeating().get(2).getSeats().get(0).getCid()==285);
+    		assertTrue(sec4.getSeating().get(0).getSeats().get(0).getCid().equals("252"));
+    		assertTrue(sec4.getSeating().get(1).getSeats().get(0).getCid().equals("268"));
+    		assertTrue(sec4.getSeating().get(2).getSeats().get(0).getCid().equals("285"));
 
     		
     		sec5 = it.initMainCenter();
-    		assertTrue(sec5.getSeating().get(0).getSeats().get(0).getCid()==257);
-    		assertTrue(sec5.getSeating().get(1).getSeats().get(0).getCid()==273);
-    		assertTrue(sec5.getSeating().get(2).getSeats().get(0).getCid()==290);
+    		assertTrue(sec5.getSeating().get(0).getSeats().get(0).getCid().equals("257"));
+    		assertTrue(sec5.getSeating().get(1).getSeats().get(0).getCid().equals("273"));
+    		assertTrue(sec5.getSeating().get(2).getSeats().get(0).getCid().equals("290"));
     		
     		sec6 = it.initMainLeft();
-    		assertTrue(sec6.getSeating().get(0).getSeats().get(0).getCid()==263);
-    		assertTrue(sec6.getSeating().get(1).getSeats().get(0).getCid()==280);
-    		assertTrue(sec6.getSeating().get(2).getSeats().get(0).getCid()==298);
+    		assertTrue(sec6.getSeating().get(0).getSeats().get(0).getCid().equals("263"));
+    		assertTrue(sec6.getSeating().get(1).getSeats().get(0).getCid().equals("280"));
+    		assertTrue(sec6.getSeating().get(2).getSeats().get(0).getCid().equals("298"));
     }
     
     @Test
@@ -145,7 +145,7 @@ public class testCases {
     @Test
     public void test_getShowDetail() {
     		shows s = is.getShowDetail(1);
-    		assertTrue(s.getID()==1);
+    		assertTrue(s.getID().equals("1"));
     }
     
     @Test
@@ -153,7 +153,7 @@ public class testCases {
     		List<shows> all = new ArrayList<shows>();
     		all=is.getAllShows();
     		for(int i=0; i<all.size(); i++) {
-    			assertTrue(all.get(i).getID()==i+1);
+    			assertTrue(all.get(i).getID().equals(Integer.toString(i+1)));
     		}
     }
     
@@ -175,21 +175,21 @@ public class testCases {
     public void test_createSections() {
     		Section s = iseat.createSections("testSec", 123, 200);
     		assertTrue(s.getPrice()==200 && s.getSection_name().equals("testSec") &&
-    				s.getSid()==123);
+    				s.getSid().equals("123"));
     }
     
     @Test
     public void test_getAllSections() {
     		List<Section> all = new ArrayList<Section>();
     		all=iseat.getAllSeats();
-    			assertTrue(all.get(0).getSid()==123 && all.get(0).getPrice()==250);
-    			assertTrue(all.get(2).getSid()==124 && all.get(2).getPrice()==350);
+    			assertTrue(all.get(0).getSid().equals("123") && all.get(0).getPrice()==250);
+    			assertTrue(all.get(2).getSid().equals("124") && all.get(2).getPrice()==350);
     }
     
     @Test
     public void test_createSeats() {
     		Seat seat = iseat.createSeats(1, 1);
-    		assertTrue(seat.getStatus()==true && seat.getCid()==1 && seat.getSeat()==1);
+    		assertTrue(seat.getStatus().equals("available") && seat.getCid().equals("1") && seat.getSeat().equals("1"));
     }
     
     @Test
@@ -202,8 +202,8 @@ public class testCases {
     		seatList.add(seat1);
     		seating.setSeats(seatList);
     		
-    		assertTrue(seating.getRow()==1 && seating.getSeats().get(0).status==true
-    				&& seating.getSeats().get(1).status==true);
+    		assertTrue(seating.getRow().equals("1") && seating.getSeats().get(0).status.equals("available")
+    				&& seating.getSeats().get(1).status.equals("available"));
     		
     }
     
@@ -230,40 +230,40 @@ public class testCases {
     public void test_getAllOrders() {
     		List<orders> all = new ArrayList<orders>();
     		all=iord.getAllOrders();
-    			assertTrue(all.get(0).getSid()==123 && all.get(0).getOid()==1);
-    			assertTrue(all.get(1).getSid()==124 && all.get(1).getOid()==2);
+    			assertTrue(all.get(0).getSid().equals("123") && all.get(0).getOid().equals("1"));
+    			assertTrue(all.get(1).getSid().equals("124") && all.get(1).getOid().equals("2"));
     }
     
     @Test
     public void test_getOrderDetail() {
     		orders ord = iord.getOrderDetail(1);
-    		assertTrue(ord.getOid()==1 && ord.getSid()==123);
+    		assertTrue(ord.getOid().equals("1") && ord.getSid().equals("123"));
     }
     
     @Test
     public void test_createTicket() {
     		ticket tic = itic.createTicket(250, 1, 123, "Front Right");
     		assertTrue(tic.getPrice()==250 &&
-    				tic.getSid()==123 &&
-    				tic.getWid()==1);
+    				tic.getSid().equals("123") &&
+    				tic.getWid().equals("1"));
     }
     
     @Test
     public void test_getAllTickets() {
     		List<ticket> all = new ArrayList<ticket>();
     		all=itic.getAllTickets();
-    			assertTrue(all.get(0).getSid()==123 && all.get(0).getTid()==1);
-    			assertTrue(all.get(1).getSid()==125 && all.get(1).getTid()==2);
+    			assertTrue(all.get(0).getSid().equals("123") && all.get(0).getTid().equals("1"));
+    			assertTrue(all.get(1).getSid().equals("125") && all.get(1).getTid().equals("2"));
     }
     
     
     @Test
     public void test_autoShows() {
     		requestResponse response = rs.autoShows(1, 123, 3, 200);
-    		assertTrue(response.getSeating().get(0).getSeats().get(0).getCid()==201);
+    		assertTrue(response.getSeating().get(0).getSeats().get(0).getCid().equals("201"));
     		
     		 response = rs.autoShows(1, 123, 3, 205);
-     	 assertTrue(response.getSeating().get(0).getSeats().get(0).getCid()==213);
+     	 assertTrue(response.getSeating().get(0).getSeats().get(0).getCid().equals("213"));
      	 
      	 response = rs.autoShows(1, 123, 5, 200);
      	 assertTrue(response.getStatus().equals("Error 5 contiguous seats not avalable"));

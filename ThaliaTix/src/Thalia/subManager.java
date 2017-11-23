@@ -7,6 +7,8 @@ import java.util.List;
 public class subManager implements interfaceSub{
 	private int location;
 	
+	private InterfaceTicket itic = new ticketManager();
+	private static List<ticket> tics = new ArrayList<ticket>();
 	private static List<subscribeDonations> subs = new ArrayList<subscribeDonations>();
 	
 	public subscribeDonations createSub(int wid, int c) {
@@ -21,7 +23,7 @@ public class subManager implements interfaceSub{
 	
 	public subscribeDonations getSpecificSub(int wid, int did) {
 		subscribeDonations sh = getSubDetail(did);
-				if(sh.getDid() == (did)) {
+				if(sh.getDid().equals(Integer.toString(did))) {
 					return sh;
     				}
 			return(new nullSub());
@@ -41,5 +43,21 @@ public class subManager implements interfaceSub{
         		location++;
         }
         return(new nullSub());
+    }
+    
+    public subscribeDonations checkStatus (subscribeDonations sd) {
+    		tics = itic.getAllTickets();
+    		if(sd.getTickets().size()==sd.getCount()) {
+    			return sd;
+    		}
+    		
+    		for(int i=0; i<tics.size(); i++) {
+    			if(tics.get(i).getStatus().equals("donating") && (sd.getTickets().size()<sd.getCount())) {
+    				sd.getTickets().add(tics.get(i).getTid());
+    				tics.get(i).setStatus("donated");
+    			}
+    		}
+    		return sd;
+
     }
 }

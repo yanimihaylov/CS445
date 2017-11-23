@@ -14,13 +14,8 @@ public class ShowManager implements InterfaceShows {
     
     
 
-    public List<shows> getAllShows() {
-    		for(int i = 0; i<Shows.size(); i++) {
-    			shows s = Shows.get(i);
-    			allShows.add(s);
-    		}
-    		
-        return(allShows);
+    public List<shows> getAllShows() {    		
+        return(Shows);
     }
 
     public shows createShow(String name, String web, String date, String time) {
@@ -46,7 +41,12 @@ public class ShowManager implements InterfaceShows {
     }
     
     public void updateShow(int id, shows s) {
-    		Shows.set(location, s);
+    		findById(id);
+    		for(int i=0; i<Shows.size(); i++) {
+    			if(Shows.get(i).getID().equals(Integer.toString(id))){
+    				Shows.set(i, s);
+    			}
+    		}	
     }
 
 	public shows getShowDetail(int lid) {
@@ -58,7 +58,7 @@ public class ShowManager implements InterfaceShows {
 		Sections = sh.getSections();
 		for(int i=0; i<Sections.size(); i++) {
 			Section s = Sections.get(i);
-			if(s.getSid() == (sid)) {
+			if(s.getSid().equals(Integer.toString(sid))) {
 				return s;
     			}
 		}

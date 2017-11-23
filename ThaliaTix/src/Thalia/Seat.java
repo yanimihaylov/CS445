@@ -2,38 +2,38 @@ package Thalia;
 
 public class Seat{
 		
-		int cid;
-		int seat;
-		boolean status;
+		String cid;
+		String seat;
+		String status;
 		
 	public Seat(int id, int s) {
-		seat = s;
-		status = true;
-		cid=id;
+		seat = Integer.toString(s);
+		status = "available";
+		cid=Integer.toString(id);
 
 	}
 	
-	public boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
 	
-	public int getCid() {
+	public String getCid() {
 		return cid;
 	}
 	
-	public int getSeat() {
+	public String getSeat() {
 		return seat;
 	}
 
-	public void setCid(int cid) {
-		this.cid = cid;
+	public void setCid(int CID) {
+		this.cid = Integer.toString(CID);
 	}
 
-	public void setSeat(int seat) {
-		this.seat = seat;
+	public void setSeat(int SEAT) {
+		this.seat = Integer.toString(SEAT);
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 }

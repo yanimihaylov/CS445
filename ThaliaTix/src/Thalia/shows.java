@@ -5,7 +5,7 @@ import java.util.List;
 
 public class shows {
 	
-	private int wid;
+	private String wid;
 	
 	private String name;
 	private String web;
@@ -22,7 +22,8 @@ public class shows {
 	public shows(String name, String web, String date, String time) {
 		showInfo = new showInfo(name, web, date, time);
 		
-		this.wid = UniqueIdGenerator.getUniqueShowID();
+		int widInt = UniqueIdGenerator.getUniqueShowID();
+		wid = Integer.toString(widInt);
 	}
 	
 	
@@ -35,12 +36,13 @@ public class shows {
 		this.showInfo = showInfo;
 	}
 
-	public int getID() {
+	public String getID() {
 		return this.wid;
 	}
 	
-	public boolean matchesId(int lid) {
-		return(lid == this.wid);
+	public boolean matchesId(int wID) {
+		String widString = Integer.toString(wID);
+		return(widString.equalsIgnoreCase(this.wid));
 	}
 	
 	public boolean isNil() {
@@ -71,7 +73,7 @@ public class shows {
 		this.seating_info = sections;
 	}
 
-	public void setWid(int wid) {
+	public void setWid(String wid) {
 		this.wid = wid;
 	}
 	

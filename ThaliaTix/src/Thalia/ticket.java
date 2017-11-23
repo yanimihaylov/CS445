@@ -2,17 +2,17 @@ package Thalia;
 
 public class ticket {
 	
-	private int tid;
+	private String tid;
 	private int price;
 	private String status;
-	private int wid;
+	private String wid;
 	private showInfo showInfo;
 	private patron patronInfo;
-	private int sid;
+	private String sid;
 	private String section_name;
 	private Seating seating;
-	private int row;
-	private int cid;
+	private String row;
+	private String cid;
 	
 	public ticket() {
 		
@@ -20,12 +20,12 @@ public class ticket {
 	
 	public ticket(int pr, int wID, int sID, String section_n) {
 		price = pr;
-		wid = wID;
-		sid = sID;
+		wid = Integer.toString(wID);
+		sid = Integer.toString(sID);
 		section_name = section_n;
 		status = "open";
 		
-		this.tid = UniqueIdGenerator.getUniqueTicketID();
+		this.tid = Integer.toString(UniqueIdGenerator.getUniqueTicketID());
 	}
 	
 	
@@ -33,32 +33,32 @@ public class ticket {
         return false;
     }
 	
-	public boolean matchesId(int tid) {
-		return(tid == this.tid);
+	public boolean matchesId(int TID) {
+		return(Integer.toString(TID).equals( this.tid));
 	}
 
-	public int getRow() {
+	public String getRow() {
 		return row;
 	}
 
-	public void setRow(int row) {
-		this.row = row;
+	public void setRow(int ROW) {
+		this.row = Integer.toString(ROW);
 	}
 
-	public int getCid() {
+	public String getCid() {
 		return cid;
 	}
 
-	public void setCid(int cid) {
-		this.cid = cid;
+	public void setCid(int CID) {
+		this.cid = Integer.toString(CID);
 	}
 
-	public int getTid() {
+	public String getTid() {
 		return tid;
 	}
 
-	public void setTid(int tid) {
-		this.tid = tid;
+	public void setTid(int TID) {
+		this.tid = Integer.toString(TID);
 	}
 
 	public int getPrice() {
@@ -77,12 +77,12 @@ public class ticket {
 		this.status = status;
 	}
 
-	public int getWid() {
+	public String getWid() {
 		return wid;
 	}
 
-	public void setWid(int wid) {
-		this.wid = wid;
+	public void setWid(int WID) {
+		this.wid = Integer.toString(WID);
 	}
 
 	public showInfo getShowInfo() {
@@ -101,12 +101,12 @@ public class ticket {
 		this.patronInfo = patronInfo;
 	}
 
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
 
-	public void setSid(int sid) {
-		this.sid = sid;
+	public void setSid(int SID) {
+		this.sid = Integer.toString(SID);
 	}
 
 	public String getSection_name() {

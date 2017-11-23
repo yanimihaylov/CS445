@@ -5,10 +5,10 @@ import java.util.List;
 
 public class orders {
 	
-	private int oid;
+	private String oid;
 	
-	private int wid;
-	private int sid;
+	private String wid;
+	private String sid;
 	private showInfo showInfo;
 	Date dateOrdered;
 	private int orderAmount;
@@ -23,11 +23,11 @@ public class orders {
 	
 	public orders(int wID, int sID, String name, String phone, String email, String b_a, String cc_n, String cc_exp_d) {
 		pat = new patron(name, phone, email, b_a, cc_n, cc_exp_d);
-		sid = sID;
-		wid = wID;
+		sid = Integer.toString(sID);
+		wid = Integer.toString(wID);
 		
 		dateOrdered = new Date();
-		this.oid = UniqueIdGenerator.getUniqueOrderID();
+		this.oid = Integer.toString(UniqueIdGenerator.getUniqueOrderID());
 		
 	}
 	
@@ -43,8 +43,8 @@ public class orders {
         return false;
     }
 	
-	public boolean matchesId(int oid) {
-		return(oid == this.oid);
+	public boolean matchesId(int OID) {
+		return(this.oid.equals(Integer.toString(OID)));
 	}
 	
 	public Date getDateOrdered() {
@@ -63,15 +63,15 @@ public class orders {
 		this.showInfo = showInfo;
 	}
 
-	public int getWid() {
+	public String getWid() {
 		return wid;
 	}
 
-	public void setWid(int wid) {
-		this.wid = wid;
+	public void setWid(int WID) {
+		this.wid = Integer.toString(WID);
 	}
 
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
 
@@ -83,8 +83,8 @@ public class orders {
 		this.showInfo = showI;
 	}
 
-	public void setSid(int sid) {
-		this.sid = sid;
+	public void setSid(int SID) {
+		this.sid = Integer.toString(SID);
 	}
 
 	public List<Seating> getSeats() {
@@ -103,12 +103,12 @@ public class orders {
 		this.pat = pat;
 	}
 	
-	public int getOid() {
+	public String getOid() {
 		return oid;
 	}
 
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setOid(int OID) {
+		this.oid = Integer.toString(OID);
 	}
 
 	public int getOrderAmount() {

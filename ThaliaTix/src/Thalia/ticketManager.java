@@ -47,7 +47,7 @@ public class ticketManager implements InterfaceTicket{
 	public void donateTicket(ArrayList<Integer> tic) {
 		for(int i=0; i<tic.size(); i++) {
 			ticket t = findById(tic.get(i));
-			t.setStatus("donated");
+			t.setStatus("donating");
 			availableDonatedTickets.add(t);
 		}
 	}
