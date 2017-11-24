@@ -13,6 +13,7 @@ public class testCases {
 	private InterfaceSeating iseat = new SeatingManager();
 	private interfaceOrders iord = new orderManager();
 	private InterfaceTicket itic = new ticketManager();
+	private interfaceSub isub = new subManager();
 	private requestShows rs = new requestShows();
 	private Section sec;
 	private initTheater it = new initTheater();
@@ -131,6 +132,12 @@ public class testCases {
     public void test_nullTicket(){
     		ticket t = itic.getTicketDetail(20000);
     		assertTrue(t.isNil());
+    }
+    
+    @Test
+    public void test_nullSubD(){
+    		subscribeDonations sub = isub.getSubDetail(20000);
+    		assertTrue(sub.isNil());
     }
     
     @Test
@@ -269,6 +276,12 @@ public class testCases {
      	 assertTrue(response.getStatus().equals("Error 5 contiguous seats not avalable"));
     }
     
+    
+    @Test
+    public void test_createSub() {
+    		subscribeDonations subD = isub.createSub(1, 3);
+    		assertTrue(subD.getWid().equals("1") && subD.getCount()==3);
+    }
     
     
     

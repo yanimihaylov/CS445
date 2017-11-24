@@ -28,7 +28,7 @@ public class subManager implements interfaceSub{
     				}
 			return(new nullSub());
 	}
-	
+ 
     private subscribeDonations findById(int did) {
     	location = 0;
         Iterator<subscribeDonations> li = subs.listIterator();

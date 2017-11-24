@@ -1,9 +1,24 @@
-#install Ant
-sudo apt-get install ant
+@install and configure java
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+$ sudo apt-get install oracle-java8-set-default
 
-#Build project and Create .war
-ant build
-ant war
+#install Tomcat8
+$ cd ~/Downloads
+$ wget http://apache.claz.org/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.zip
+$ unzip apache-tomcat-8.5.23.zip
+$ sudo mv apache-tomcat-8.5.23.zip /opt/tomcat
+$ cd /opt/tomcat/bin
+$ chmod 744 *sh
+
+#install Ant
+$ sudo apt-get install ant
+
+
+#Build, prepare report, generate .war
+#In project folder
+ant build junitreport war
 
 #move .war to tomcat/webapps
 sudo mv thalia.war /opt/tomcat/webapps
