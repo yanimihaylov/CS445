@@ -11,20 +11,21 @@
     <property name="source" value="1.8"/>
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jacocoant.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/junit4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.jacoco.agent_0.7.9.v20170208-1730.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.jacoco.core_0.7.9.v20170208-1730.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.jacoco.report_0.7.9.v20170208-1730.jar"/>
         <pathelement location="WebContent/WEB-INF/classes"/>
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
-	<path id="JUnit 4.libraryclasspath">
-		<pathelement location="WebContent/WEB-INF/lib/org.junit_4.12.0.v201504281640/junit.jar"/>
-		<pathelement location="WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
-		<pathelement location="WebContent/WEB-INF/lib/org.jacoco.agent_0.7.9.v20170208-1730.jar"/>
-		<pathelement location="WebContent/WEB-INF/lib/org.jacoco.core_0.7.9.v20170208-1730.jar"/>
-		<pathelement location="WebContent/WEB-INF/lib/org.jacoco.report_0.7.9.v20170208-1730.jar"/>
-		<pathelement location="WebContent/WEB-INF/lib/jacocoant.jar"/>
-	</path>
-              	
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
     <path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
         <pathelement location="../../../../../opt/tomcat/lib/el-api.jar"/>
         <pathelement location="../../../../../opt/tomcat/lib/tomcat-i18n-es.jar"/>
@@ -60,6 +61,7 @@
         <path refid="EAR Libraries.libraryclasspath"/>
         <path refid="JUnit 4.libraryclasspath"/>
         <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
+        <pathelement location="../../jacoco-0.7.9.zip"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -99,23 +101,16 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-              	
-
-                <!-- Java Code Coverage -->
-                <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-                    <classpath path="WebContent/WEB-INF/lib/jacocoant.jar"/>
-                </taskdef>
-                           	
+    <target name="testCases">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Thalia.testCases" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="ThaliaTix.classpath"/>
+        </junit>
+    </target>
     <target name="junitreport">
-    			<mkdir dir="${junit.output.dir}"/>
-              	
-    	        <junit fork="yes" printsummary="withOutAndErr">
-    	            <formatter type="xml"/>
-    	            <test name="Thalia.testCases" todir="${junit.output.dir}"/>
-    	            <jvmarg line="-ea"/>
-    	            <classpath refid="ThaliaTix.classpath"/>
-    	        </junit>
-
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
@@ -123,8 +118,6 @@
             <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
     </target>
-              	
-              	
               	
               	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
               	            	    <mkdir dir="WebContent/WEB-INF/classes"/>
@@ -140,4 +133,5 @@
               	            	        needxmlfile="false">
               	            	    </war>
               	            	</target>
+              	
 </project>

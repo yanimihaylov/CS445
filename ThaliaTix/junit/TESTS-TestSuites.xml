@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="Yanis-MacBook-Pro-2.local" id="0" name="testCases" package="Thalia" skipped="0" tests="23" time="0.136" timestamp="2017-11-24T00:27:38">
+  <testsuite errors="0" failures="0" hostname="Yanis-MacBook-Pro-2.local" id="0" name="testCases" package="Thalia" skipped="0" tests="23" time="0.116" timestamp="2017-11-24T02:50:07">
       <properties>
           <property name="java.vendor" value="Oracle Corporation" />
 
           <property name="sun.java.launcher" value="SUN_STANDARD" />
 
-          <property name="env.XPC_SERVICE_NAME" value="0" />
+          <property name="env.XPC_SERVICE_NAME" value="org.eclipse.platform.ide.4748" />
 
           <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
 
@@ -16,13 +16,11 @@
 
           <property name="env.TMPDIR" value="/var/folders/sc/x4fqprzs4m59jkvv_kfm04n80000gn/T/" />
 
-          <property name="env.PWD" value="/Users/ymihaylo/Desktop/CS445/ThaliaTix" />
-
           <property name="user.country.format" value="BG" />
 
           <property name="java.vm.specification.vendor" value="Oracle Corporation" />
 
-          <property name="ant.home" value="/usr/local/Cellar/ant/1.10.1/libexec" />
+          <property name="ant.home" value="/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840" />
 
           <property name="java.runtime.version" value="1.8.0_65-b17" />
 
@@ -36,11 +34,15 @@
 
           <property name="env.USER" value="ymihaylo" />
 
+          <property name="env.JAVA_STARTED_ON_FIRST_THREAD_28913" value="1" />
+
           <property name="env.SHELL" value="/bin/bash" />
 
           <property name="env.__CF_USER_TEXT_ENCODING" value="0x1F5:0x0:0x0" />
 
-          <property name="env.PATH" value="/Users/ymihaylo/anaconda/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands" />
+          <property name="env.APP_ICON_6569" value="../Resources/Eclipse.icns" />
+
+          <property name="env.PATH" value="/usr/bin:/bin:/usr/sbin:/sbin" />
 
           <property name="user.language" value="en" />
 
@@ -51,8 +53,6 @@
           <property name="env.XPC_FLAGS" value="0x0" />
 
           <property name="ant.project.name" value="ThaliaTix" />
-
-          <property name="env.LC_CTYPE" value="UTF-8" />
 
           <property name="java.version" value="1.8.0_65" />
 
@@ -72,11 +72,11 @@
 
           <property name="ant.file.type.ThaliaTix" value="file" />
 
-          <property name="env.SHLVL" value="2" />
-
           <property name="file.separator" value="/" />
 
           <property name="java.specification.name" value="Java Platform API Specification" />
+
+          <property name="env.JAVA_MAIN_CLASS_28913" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner" />
 
           <property name="java.class.version" value="52.0" />
 
@@ -92,21 +92,15 @@
 
           <property name="os.version" value="10.13.2" />
 
-          <property name="env.JAVA_MAIN_CLASS_27120" value="org.apache.tools.ant.launch.Launcher" />
-
-          <property name="env.TERM_PROGRAM_VERSION" value="400" />
-
           <property name="path.separator" value=":" />
 
           <property name="java.vm.version" value="25.65-b01" />
 
-          <property name="ant.library.dir" value="/usr/local/Cellar/ant/1.10.1/libexec/lib" />
+          <property name="ant.library.dir" value="/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840/lib" />
 
           <property name="junit.output.dir" value="junit" />
 
           <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob" />
-
-          <property name="env.TERM" value="xterm-256color" />
 
           <property name="sun.io.unicode.encoding" value="UnicodeBig" />
 
@@ -122,8 +116,6 @@
 
           <property name="java.specification.vendor" value="Oracle Corporation" />
 
-          <property name="env.TERM_PROGRAM" value="Apple_Terminal" />
-
           <property name="java.library.path" value="/Users/ymihaylo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:." />
 
           <property name="java.vendor.url" value="http://java.oracle.com/" />
@@ -134,27 +126,25 @@
 
           <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Thalia.testCases skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/ymihaylo/Desktop/CS445/ThaliaTix/junit/TEST-Thalia.testCases.xml crashfile=/Users/ymihaylo/Desktop/CS445/ThaliaTix/junitvmwatcher7715762420565658577.properties propsfile=/Users/ymihaylo/Desktop/CS445/ThaliaTix/junit1775902977514643056.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Thalia.testCases skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/ymihaylo/Desktop/CS445/ThaliaTix/junit/TEST-Thalia.testCases.xml crashfile=/Users/ymihaylo/Desktop/CS445/ThaliaTix/junitvmwatcher4509403306284219111.properties propsfile=/Users/ymihaylo/Desktop/CS445/ThaliaTix/junit431041167877703454.properties" />
 
-          <property name="java.class.path" value="/Users/ymihaylo/Desktop/CS445/ThaliaTix/build/classes:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/gson-2.6.2.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/classes:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.junit_4.12.0.v201504281640/junit.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.jacoco.agent_0.7.9.v20170208-1730.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.jacoco.core_0.7.9.v20170208-1730.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.jacoco.report_0.7.9.v20170208-1730.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/jacocoant.jar:/opt/tomcat/lib/el-api.jar:/opt/tomcat/lib/tomcat-i18n-es.jar:/opt/tomcat/lib/tomcat-websocket.jar:/opt/tomcat/lib/jasper.jar:/opt/tomcat/lib/jasper-el.jar:/opt/tomcat/lib/tomcat-util.jar:/opt/tomcat/lib/catalina-storeconfig.jar:/opt/tomcat/lib/jsp-api.jar:/opt/tomcat/lib/catalina-tribes.jar:/opt/tomcat/lib/catalina.jar:/opt/tomcat/lib/tomcat-jni.jar:/opt/tomcat/lib/jsr311-api-1.1.1.jar:/opt/tomcat/lib/websocket-api.jar:/opt/tomcat/lib/tomcat-coyote.jar:/opt/tomcat/lib/catalina-ha.jar:/opt/tomcat/lib/tomcat-api.jar:/opt/tomcat/lib/annotations-api.jar:/opt/tomcat/lib/catalina-ant.jar:/opt/tomcat/lib/ecj-4.6.3.jar:/opt/tomcat/lib/servlet-api.jar:/opt/tomcat/lib/tomcat-util-scan.jar:/opt/tomcat/lib/gson-2.6.2.jar:/opt/tomcat/lib/tomcat-i18n-ja.jar:/opt/tomcat/lib/jersey-bundle-1.19.1.jar:/opt/tomcat/lib/tomcat-jdbc.jar:/opt/tomcat/lib/tomcat-i18n-fr.jar:/opt/tomcat/lib/tomcat-dbcp.jar:/usr/local/Cellar/ant/1.10.1/libexec/lib/ant-launcher.jar:/usr/local/Cellar/ant/1.10.1/libexec/lib/ant.jar:/usr/local/Cellar/ant/1.10.1/libexec/lib/ant-junit.jar:/usr/local/Cellar/ant/1.10.1/libexec/lib/ant-junit4.jar" />
+          <property name="java.class.path" value="/Users/ymihaylo/Desktop/CS445/ThaliaTix/build/classes:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/gson-2.6.2.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/jacocoant.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/junit4.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.jacoco.agent_0.7.9.v20170208-1730.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.jacoco.core_0.7.9.v20170208-1730.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/lib/org.jacoco.report_0.7.9.v20170208-1730.jar:/Users/ymihaylo/Desktop/CS445/ThaliaTix/WebContent/WEB-INF/classes:/Users/ymihaylo/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar:/Users/ymihaylo/.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar:/opt/tomcat/lib/el-api.jar:/opt/tomcat/lib/tomcat-i18n-es.jar:/opt/tomcat/lib/tomcat-websocket.jar:/opt/tomcat/lib/jasper.jar:/opt/tomcat/lib/jasper-el.jar:/opt/tomcat/lib/tomcat-util.jar:/opt/tomcat/lib/catalina-storeconfig.jar:/opt/tomcat/lib/jsp-api.jar:/opt/tomcat/lib/catalina-tribes.jar:/opt/tomcat/lib/catalina.jar:/opt/tomcat/lib/tomcat-jni.jar:/opt/tomcat/lib/jsr311-api-1.1.1.jar:/opt/tomcat/lib/websocket-api.jar:/opt/tomcat/lib/tomcat-coyote.jar:/opt/tomcat/lib/catalina-ha.jar:/opt/tomcat/lib/tomcat-api.jar:/opt/tomcat/lib/annotations-api.jar:/opt/tomcat/lib/catalina-ant.jar:/opt/tomcat/lib/ecj-4.6.3.jar:/opt/tomcat/lib/servlet-api.jar:/opt/tomcat/lib/tomcat-util-scan.jar:/opt/tomcat/lib/gson-2.6.2.jar:/opt/tomcat/lib/tomcat-i18n-ja.jar:/opt/tomcat/lib/jersey-bundle-1.19.1.jar:/opt/tomcat/lib/tomcat-jdbc.jar:/opt/tomcat/lib/tomcat-i18n-fr.jar:/opt/tomcat/lib/tomcat-dbcp.jar:/Users/ymihaylo/Desktop/jacoco-0.7.9.zip:/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840/lib/ant-launcher.jar:/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840/lib/ant.jar:/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840/lib/ant-junit.jar:/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840/lib/ant-junit4.jar" />
 
           <property name="ant.version" value="Apache Ant(TM) version 1.10.1 compiled on February 2 2017" />
 
-          <property name="env.TERM_SESSION_ID" value="9E6521CC-0A43-447C-AD84-CF2D106E63EC" />
-
           <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
-
-          <property name="ant.file.type" value="file" />
 
           <property name="java.vm.specification.version" value="1.8" />
 
+          <property name="sun.cpu.endian" value="little" />
+
           <property name="sun.os.patch.level" value="unknown" />
 
-          <property name="sun.cpu.endian" value="little" />
+          <property name="debuglevel" value="source,lines,vars" />
 
           <property name="env.HOME" value="/Users/ymihaylo" />
 
-          <property name="debuglevel" value="source,lines,vars" />
+          <property name="env.ANT_HOME" value="/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840" />
 
           <property name="java.io.tmpdir" value="/var/folders/sc/x4fqprzs4m59jkvv_kfm04n80000gn/T/" />
 
@@ -178,7 +168,7 @@
 
           <property name="ant.java.version" value="1.8" />
 
-          <property name="ant.core.lib" value="/usr/local/Cellar/ant/1.10.1/libexec/lib/ant.jar" />
+          <property name="ant.core.lib" value="/Users/ymihaylo/.p2/pool/plugins/org.apache.ant_1.10.1.v20170504-0840/lib/ant.jar" />
 
           <property name="source" value="1.8" />
 
@@ -186,55 +176,55 @@
 
           <property name="java.specification.version" value="1.8" />
 
-          <property name="ant.project.invoked-targets" value="build,junitreport,war" />
+          <property name="ant.project.invoked-targets" value="clean,build,testCases,junitreport,war" />
 
       </properties>
 
-      <testcase classname="Thalia.testCases" name="test_getAllOrders" time="0.004" />
-
-      <testcase classname="Thalia.testCases" name="test_getAllSections" time="0.001" />
-
-      <testcase classname="Thalia.testCases" name="test_getOrderDetail" time="0.001" />
-
-      <testcase classname="Thalia.testCases" name="test_getAllTickets" time="0.001" />
-
-      <testcase classname="Thalia.testCases" name="test_getSectionDetail" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_createSeating" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_getShowDetail" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="nullSectons" time="0.001" />
-
-      <testcase classname="Thalia.testCases" name="test_nullSection" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_createOrder" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_createSeats" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_getAllShows" time="0.001" />
-
-      <testcase classname="Thalia.testCases" name="test_createSections" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_getSpecificSection" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_createShow" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_initTheater" time="0.001" />
-
-      <testcase classname="Thalia.testCases" name="test_createTicket" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_createSub" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_nullTicket" time="0.0" />
-
-      <testcase classname="Thalia.testCases" name="test_nullOrder" time="0.001" />
+      <testcase classname="Thalia.testCases" name="test_initTheater" time="0.006" />
 
       <testcase classname="Thalia.testCases" name="test_nullShow" time="0.001" />
 
+      <testcase classname="Thalia.testCases" name="test_nullOrder" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_nullSection" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="test_nullTicket" time="0.001" />
+
       <testcase classname="Thalia.testCases" name="test_nullSubD" time="0.001" />
 
+      <testcase classname="Thalia.testCases" name="test_createShow" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_getShowDetail" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_getAllShows" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="test_getSpecificSection" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="nullSectons" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="test_createSections" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="test_getAllSections" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_createSeats" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_createSeating" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_getSectionDetail" time="0.002" />
+
+      <testcase classname="Thalia.testCases" name="test_createOrder" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_getAllOrders" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="test_getOrderDetail" time="0.0" />
+
+      <testcase classname="Thalia.testCases" name="test_createTicket" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_getAllTickets" time="0.0" />
+
       <testcase classname="Thalia.testCases" name="test_autoShows" time="0.001" />
+
+      <testcase classname="Thalia.testCases" name="test_createSub" time="0.001" />
 
       <system-out><![CDATA[]]></system-out>
 

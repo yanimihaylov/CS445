@@ -250,7 +250,7 @@ public class REST_shows {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowSpecificSection(@PathParam("id") int wid, @PathParam("sid") int sid) {
-        // call the "Get Show Detail" use case
+        // call the "Get Show Section" use case
     		shows sh = is.getShowDetail(wid);
         Section s = is.getSpecificSection(wid, sid);
         if (s.isNil()) {
@@ -321,7 +321,7 @@ public class REST_shows {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecificSub(@PathParam("id") int wid, @PathParam("did") int did) {
-        // call the "Get Show Detail" use case	
+        // call the "Get status for donations" use case	
     		subscribeDonations s = isub.getSpecificSub(wid, did);
     		s = isub.checkStatus(s);
         if (s.isNil()) {
@@ -349,23 +349,48 @@ public class REST_shows {
     
     ///////////////////////////////SEATING///////////////////////////////
    
-    //VIEW ALL SEATING
+
+    
+    //REQUEST SEATS AUTO OR SEATING
     @Path("/seating")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllSeats() {
-        // calls the "Get All Seats" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson(iseat.getAllSeats());
-        JsonArray objArr = gson.fromJson(s, JsonArray.class);
-        
-        for(int i=0; i<objArr.size(); i++) {
-	        objArr.get(i).getAsJsonObject().remove("price");
-	        objArr.get(i).getAsJsonObject().remove("seating");
+    public Response getAutoSeats(@QueryParam("show") Integer wid, @QueryParam("section") int sid, @QueryParam("count") int count, @QueryParam("starting_seat_id") int cid) {
+    	
+    	
+    		if(wid == null) {
+    			// calls the "Get All Seats" use case
+    	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    	        String s = gson.toJson(iseat.getAllSeats());
+    	        JsonArray objArr = gson.fromJson(s, JsonArray.class);
+    	        
+    	        for(int i=0; i<objArr.size(); i++) {
+    		        objArr.get(i).getAsJsonObject().remove("price");
+    		        objArr.get(i).getAsJsonObject().remove("seating");
+    	        }
+    	        s = gson.toJson(objArr);
+    	        return Response.status(Response.Status.OK).entity(s).build();
+    			
+    		}
+    		
+        // call the "Request seats" use case
+        requestResponse response = rs.autoShows(wid, sid, count, cid);
+        if (response.isNil()) {
+            // return a 404
+            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
+        } else {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String st = gson.toJson(response);
+            
+            JsonObject obj = gson.fromJson(st, JsonObject.class);
+            
+            obj.getAsJsonObject("info").remove("seating_info");
+            
+            st = gson.toJson(obj);
+            return Response.ok(st).build();
         }
-        s = gson.toJson(objArr);
-        return Response.status(Response.Status.OK).entity(s).build();
     }
+    
     
     
     //VIEW SPECIFIC SECTION
@@ -402,29 +427,7 @@ public class REST_shows {
         }
     }
     
-    //REQUEST SEATS AUTO
-   /* @Path("/seating")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAutoSeats(@QueryParam("show") int wid, @QueryParam("section") int sid, @QueryParam("count") int count, @QueryParam("starting_seat_id") int cid) {
-        // call the "Get Show Detail" use case
-        requestResponse response = rs.autoShows(wid, sid, count, cid);
-        if (response.isNil()) {
-            // return a 404
-            return Response.status(Response.Status.NOT_FOUND).entity(":( Entity not found for ID: " + wid).build();
-        } else {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String st = gson.toJson(response);
-            
-            JsonObject obj = gson.fromJson(st, JsonObject.class);
-            
-            obj.getAsJsonObject("info").remove("seating_info");
-            
-            st = gson.toJson(obj);
-            return Response.ok(st).build();
-        }
-    }
-    */
+
     
     
     
