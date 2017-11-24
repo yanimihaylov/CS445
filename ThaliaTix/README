@@ -18,7 +18,7 @@ $ sudo apt-get install ant
 
 #Build, prepare report, generate .war
 #In project folder
-ant build junitreport war
+ant build testCases junitreport war
 
 #move .war to tomcat/webapps
 sudo mv thalia.war /opt/tomcat/webapps
