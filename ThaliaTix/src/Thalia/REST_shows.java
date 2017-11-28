@@ -46,7 +46,7 @@ public class REST_shows {
     
     
     //CREATE SHOWS
-	@Path("/show")
+	@Path("/showss")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response createShows(String json) {
@@ -100,7 +100,7 @@ public class REST_shows {
     }
     
     //UPDATE SHOWS
-    @Path("/show/{id}")
+    @Path("/shows/{id}")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response makeLamp(@PathParam("id") int showID, String json) {
@@ -165,7 +165,7 @@ public class REST_shows {
     
     
   //VIEW SHOW
-    @Path("/show/{id}")
+    @Path("/shows/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecificShow(@PathParam("id") int wid) {
@@ -198,7 +198,7 @@ public class REST_shows {
     }
     
     //VIEW ALL SHOWS
-    @Path("/show")
+    @Path("/shows")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllShows() {
@@ -220,7 +220,7 @@ public class REST_shows {
     
     
     //VIEW SHOW SECTIONS
-    @Path("/show/{id}/sections")
+    @Path("/shows/{id}/sections")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowSections(@PathParam("id") int wid) {
@@ -246,7 +246,7 @@ public class REST_shows {
     
     
   //VIEW SHOW SPECIFIC SECTION
-    @Path("/show/{id}/sections/{sid}")
+    @Path("/shows/{id}/sections/{sid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowSpecificSection(@PathParam("id") int wid, @PathParam("sid") int sid) {
@@ -279,7 +279,7 @@ public class REST_shows {
     
     
     //SUBSCRIBE TO DONATIONS
-    @Path("/show/{wid}/donations")
+    @Path("/shows/{wid}/donations")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response subscribe(@PathParam("wid") int wid,String json) {
@@ -317,7 +317,7 @@ public class REST_shows {
     
     
     //STATUS OF REQUEST FOR DONATED TICKETS
-    @Path("/show/{id}/donations/{did}")
+    @Path("/shows/{id}/donations/{did}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecificSub(@PathParam("id") int wid, @PathParam("did") int did) {

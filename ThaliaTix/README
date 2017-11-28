@@ -8,7 +8,7 @@ $ sudo apt-get install oracle-java8-set-default
 $ cd ~/Downloads
 $ wget http://apache.claz.org/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.zip
 $ unzip apache-tomcat-8.5.23.zip
-$ sudo mv apache-tomcat-8.5.23.zip /opt/tomcat
+$ sudo mv apache-tomcat-8.5.23 /opt/tomcat
 $ cd /opt/tomcat/bin
 $ chmod 744 *sh
 
@@ -27,3 +27,10 @@ sudo mv thalia.war /opt/tomcat/webapps
 cd /opt/tomcat/bin
 chmod 744 *sh
 ./startup.sh
+
+
+
+##Unit tests
+Tests are run as part of the ant build command above.
+**Note** Test coverage will not built along with the project. Project wide coverage can be accessed by entering the "Coverage" folder in the project folder and opening "index.html"
+Individual file coverage can be seen in Coverage/ThaliaTix/src/Thalia/<fileName>.html
