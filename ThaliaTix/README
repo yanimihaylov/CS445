@@ -29,6 +29,14 @@ chmod 744 *sh
 ./startup.sh
 
 
+#Knows bugs
+	1)	Please request     GET http://localhost:8080/thalia/thalia    before starting the project to build the theater seating.
+
+	2)	Request auto seats has some bugs. It does not give 3 seats starting from the second seats.
+	
+
+	Jacoco code coverage file is included. Tests run with ANT build.
+
 
 ##Unit tests
 Tests are run as part of the ant build command above.
