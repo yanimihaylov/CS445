@@ -3,6 +3,7 @@ package Thalia;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class UniqueIdGenerator {
+	static int start = 307;
     static AtomicInteger atomicIntegerShows = new AtomicInteger();
     static AtomicInteger atomicIntegerOrders = new AtomicInteger();
     static AtomicInteger atomicIntegerTickets = new AtomicInteger();
@@ -10,7 +11,7 @@ public class UniqueIdGenerator {
 
     
     public static int getUniqueShowID() {
-        return atomicIntegerShows.incrementAndGet();
+        return atomicIntegerShows.incrementAndGet()+start;
     }
     
     public static int getUniqueOrderID() {

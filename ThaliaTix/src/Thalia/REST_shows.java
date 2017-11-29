@@ -46,7 +46,7 @@ public class REST_shows {
     
     
     //CREATE SHOWS
-	@Path("/showss")
+	@Path("/shows")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response createShows(String json) {
@@ -94,7 +94,18 @@ public class REST_shows {
         }  
      
 	Gson gsonb = new GsonBuilder().setPrettyPrinting().create();
-	String st = gsonb.toJson("Done! :)");
+	String st = gsonb.toJson(ns);
+	JsonObject returnObj = gson.fromJson(st, JsonObject.class);
+	returnObj.remove("name");
+	returnObj.remove("web");
+	returnObj.remove("date");
+	returnObj.remove("time");
+	returnObj.remove("showInfo");
+	returnObj.remove("seating_info");
+
+	st = gsonb.toJson(returnObj);
+
+	
 	     
 	return Response.ok(st).build();
     }
@@ -159,7 +170,7 @@ public class REST_shows {
         }
         else {
         		is.updateShow(id, s);
-        		return Response.status(Response.Status.ACCEPTED).entity("Show updated.").build();        
+        		return Response.status(Response.Status.ACCEPTED).build();        
         		}
     }
     

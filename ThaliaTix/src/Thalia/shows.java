@@ -12,7 +12,7 @@ public class shows {
 	private String date;
 	private String time;
 	
-	private showInfo showInfo;
+	private showInfo show_info;
 	private List<Section> seating_info = new ArrayList<Section>();
 	
 	public shows() {
@@ -20,7 +20,7 @@ public class shows {
 	}
 	
 	public shows(String name, String web, String date, String time) {
-		showInfo = new showInfo(name, web, date, time);
+		show_info = new showInfo(name, web, date, time);
 		
 		int widInt = UniqueIdGenerator.getUniqueShowID();
 		wid = Integer.toString(widInt);
@@ -28,12 +28,12 @@ public class shows {
 	
 	
 	public showInfo getShowInfo() {
-		return showInfo;
+		return show_info;
 	}
 	
 	
 	public void setShowInfo(showInfo showInfo) {
-		this.showInfo = showInfo;
+		this.show_info = showInfo;
 	}
 
 	public String getID() {

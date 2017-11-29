@@ -21,7 +21,7 @@ public class initTheater {
 	
 	public Section initFrontRight() {
 		//Front Right
-				initSection = iseat.createSections("Front Right", 123, 0);
+				initSection = iseat.createSections("Front right", 123, 0);
 				for(int row = 1; row<=4; row++) {
 					initSeating = iseat.createSeating(row);
 					
@@ -48,7 +48,7 @@ public class initTheater {
 	
 	public Section initFrontCenter() {
 		//Front Center
-				initSection = iseat.createSections("Front Center", 124, 0);
+				initSection = iseat.createSections("Front center", 124, 0);
 				for(int row = 1; row<=2; row++) {
 					initSeating = iseat.createSeating(row);
 					
@@ -90,7 +90,7 @@ public class initTheater {
 	
 	public Section initFrontLeft() {
 		//Front Left
-				initSection = iseat.createSections("Front Left", 125, 0);
+				initSection = iseat.createSections("Front left", 125, 0);
 				for(int row = 1; row<=4; row++) {
 					initSeating = iseat.createSeating(row);
 					
@@ -116,7 +116,7 @@ public class initTheater {
 	
 	public Section initMainRight() {
 		//Main Right
-		initSection = iseat.createSections("Main Right", 126, 0);
+		initSection = iseat.createSections("Main right", 126, 0);
 		for(int row = 5; row<=7; row++) {
 			initSeating = iseat.createSeating(row);
 			
@@ -140,7 +140,7 @@ public class initTheater {
 	
 	public Section initMainCenter() {
 		//Main Center
-		initSection = iseat.createSections("Main Center", 127, 0);
+		initSection = iseat.createSections("Main center", 127, 0);
 		
 		initSeating = iseat.createSeating(5);
 		for(int seat = 6; seat<=11; seat++) {
@@ -175,7 +175,7 @@ public class initTheater {
 	
 	public Section initMainLeft() {
 		//Main Left
-		initSection = iseat.createSections("Main Left", 128, 0);
+		initSection = iseat.createSections("Main left", 128, 0);
 		
 		initSeating = iseat.createSeating(5);
 		for(int seat = 12; seat<=16; seat++) {
